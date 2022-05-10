@@ -14,7 +14,7 @@
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center|start"
         android:fontFamily="sans-serif-black"
         android:hint="@string/welcome"
         android:textColor="#000000"
@@ -43,7 +43,8 @@
             android:layout_marginTop="@dimen/text_margin_top"
             android:fontFamily="sans-serif-medium"
             android:hint="@string/signup"
-            android:textColorHint="@color/text" />
+            android:textColorHint="@color/text"
+            android:textSize="@dimen/text_size" />
     </LinearLayout>
 
 
