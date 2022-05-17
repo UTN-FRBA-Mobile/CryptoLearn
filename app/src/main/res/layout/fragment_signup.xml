@@ -144,7 +144,7 @@
         android:padding="@dimen/text_input_padding" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/signUpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/text_margin_top"
