@@ -5,9 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.navigation.fragment.findNavController
 import com.mobile.test.databinding.FragmentLoginBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -17,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
+ * Use the [ResetPasswordFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class LoginFragment : Fragment() {
+class ResetPasswordFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -44,31 +41,6 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        _binding?.loginButton?.setOnClickListener{
-            val email = binding.email.text.toString()
-            val password = binding.password.text.toString()
-
-            when{
-                email.isEmpty() or password.isEmpty() -> {
-                    // TODO: Show toast
-                    print("Llena los campos mi rey")
-                }
-                else ->{
-                    val bundle = bundleOf("Email" to email,"Password" to password)
-                    val action = R.id.action_loginFragment_to_homeFragment
-                    findNavController().navigate(action, bundle)
-                }
-            }
-        }
-
-        _binding?.signUp?.setOnClickListener{
-            findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
-        }
-    }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -76,12 +48,12 @@ class LoginFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
+         * @return A new instance of fragment ResetPasswordFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
+            ResetPasswordFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
