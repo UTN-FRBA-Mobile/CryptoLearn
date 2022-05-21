@@ -53,7 +53,7 @@
         android:label="fragment_chapter"
         tools:layout="@layout/fragment_chapter" >
         <action
-            android:id="@+id/action_chapterFragment_to_questionFragment3"
+            android:id="@+id/action_chapterFragment_to_questionFragment"
             app:destination="@id/questionFragment" />
     </fragment>
     <fragment

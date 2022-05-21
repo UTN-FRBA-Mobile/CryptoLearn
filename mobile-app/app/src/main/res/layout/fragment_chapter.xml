@@ -12,11 +12,23 @@
         android:layout_height="match_parent"
         tools:context=".ChapterFragment">
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:text="Chapter screen" />
+
+        <Button
+            android:id="@+id/goToQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_margin_top"
+            android:backgroundTint="@color/text_disabled"
+            android:padding="@dimen/button_padding"
+            android:stateListAnimator="@null"
+            android:text="Go to question mock"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/text_size"
+            tools:ignore="TextContrastCheck" />
 
     </FrameLayout>
 </layout>
