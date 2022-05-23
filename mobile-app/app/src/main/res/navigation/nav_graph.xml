@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.mobile.test.HomeFragment"
+        android:name="com.mobile.test.homeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
