@@ -17,6 +17,6 @@ class LogInResource(MethodView):
     def post(body_data: dict):
         user = User(body_data["email"], body_data["password"])
         if user.exist():
-            return JWTManager.create_access_token(identity=user.email), 200
+            return {"token": JWTManager.create_access_token(identity=user.email)}, 200
         else:
             return "", 403
