@@ -1,10 +1,15 @@
 package com.mobile.test
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.core.widget.doAfterTextChanged
+import androidx.navigation.fragment.findNavController
 import com.mobile.test.databinding.FragmentLoginBinding
 import com.mobile.test.databinding.FragmentResetPasswordBinding
 
@@ -40,6 +45,41 @@ class ResetPasswordFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentResetPasswordBinding.inflate(inflater,container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.sendRecoveryLink.isEnabled = false
+
+        _binding?.sendRecoveryLink?.setOnClickListener{
+            val email = binding.email.text.toString()
+
+            when{
+                email.isEmpty() -> {
+                    val toast = Toast.makeText(context, "Llená los  campos mi rey", Toast.LENGTH_LONG)
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 190);
+                    toast.show()
+                }
+                else ->{
+                    val toast = Toast.makeText(context, "Te hemos enviado un link de recuperación a $email", Toast.LENGTH_LONG)
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                    toast.show()
+                    val bundle = bundleOf("Email" to email)
+                    val action = R.id.action_resetPasswordFragment_to_loginFragment
+                    findNavController().navigate(action, bundle)
+                }
+            }
+        }
+
+        binding.email.doAfterTextChanged {
+            checkRequiredFields()
+        }
+    }
+
+    private fun checkRequiredFields() {
+        binding.sendRecoveryLink.isEnabled =
+            binding.email.text.toString().isNotEmpty()
     }
 
     companion object {

@@ -80,6 +80,10 @@ class LoginFragment : Fragment() {
             checkRequiredFields()
         }
 
+        _binding?.forgotPassword?.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment)
+        }
+
         _binding?.signUp?.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
         }

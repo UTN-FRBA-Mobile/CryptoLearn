@@ -14,4 +14,7 @@
     <string name="last_name">Apellido</string>
     <string name="name">Nombre</string>
     <string name="confirm_password">Confirmar constraseña</string>
+    <string name="recover_password">Recuperar contraseña</string>
+    <string name="recover_password_description">¿Cuál es tu email?</string>
+    <string name="send_recovery_link">Enviar</string>
 </resources>
