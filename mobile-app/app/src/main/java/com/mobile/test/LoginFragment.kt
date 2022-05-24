@@ -1,14 +1,19 @@
 package com.mobile.test
 
+import android.R.attr.name
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.TextWatcher
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.databinding.FragmentLoginBinding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,8 +58,9 @@ class LoginFragment : Fragment() {
 
             when{
                 email.isEmpty() or password.isEmpty() -> {
-                    // TODO: Show toast
-                    print("Llena los campos mi rey")
+                    val toast = Toast.makeText(context, "Llená los  campos mi rey", Toast.LENGTH_LONG)
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 190);
+                    toast.show()
                 }
                 else ->{
                     val bundle = bundleOf("Email" to email,"Password" to password)
@@ -64,9 +70,22 @@ class LoginFragment : Fragment() {
             }
         }
 
+        binding.email.doAfterTextChanged {
+            checkRequiredFields()
+        }
+
+        binding.password.doAfterTextChanged {
+            checkRequiredFields()
+        }
+
         _binding?.signUp?.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
         }
+    }
+
+    private fun checkRequiredFields() {
+        binding.loginButton.isEnabled =
+            binding.email.text.toString().isNotEmpty() && binding.password.text.toString().isNotEmpty()
     }
 
     companion object {
