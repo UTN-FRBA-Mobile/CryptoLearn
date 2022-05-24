@@ -54,20 +54,13 @@ class ResetPasswordFragment : Fragment() {
         _binding?.sendRecoveryLink?.setOnClickListener{
             val email = binding.email.text.toString()
 
-            when{
-                email.isEmpty() -> {
-                    val toast = Toast.makeText(context, "Llená los  campos mi rey", Toast.LENGTH_LONG)
-                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 190);
-                    toast.show()
-                }
-                else ->{
-                    val toast = Toast.makeText(context, "Te hemos enviado un link de recuperación a $email", Toast.LENGTH_LONG)
-                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
-                    toast.show()
-                    val bundle = bundleOf("Email" to email)
-                    val action = R.id.action_resetPasswordFragment_to_loginFragment
-                    findNavController().navigate(action, bundle)
-                }
+            if (!email.isEmpty()) {
+                val toast = Toast.makeText(context, "Te hemos enviado un link de recuperación a $email", Toast.LENGTH_LONG)
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                toast.show()
+                val bundle = bundleOf("Email" to email)
+                val action = R.id.action_resetPasswordFragment_to_loginFragment
+                findNavController().navigate(action, bundle)
             }
         }
 
