@@ -12,7 +12,11 @@ import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.mobile.test.api.RetrofitClient
 import com.mobile.test.databinding.FragmentLoginBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -55,8 +59,8 @@ class LoginFragment : Fragment() {
         binding.loginButton.isEnabled = false
 
         _binding?.loginButton?.setOnClickListener{
-            val email = binding.email.text.toString()
-            val password = binding.password.text.toString()
+            val email = binding.email.text.toString().trim()
+            val password = binding.password.text.toString().trim()
 
             when{
                 email.isEmpty() or password.isEmpty() -> {
@@ -65,9 +69,17 @@ class LoginFragment : Fragment() {
                     toast.show()
                 }
                 else ->{
-                    val bundle = bundleOf("Email" to email,"Password" to password)
-                    val action = R.id.action_loginFragment_to_homeFragment
-                    findNavController().navigate(action, bundle)
+                    RetrofitClient.service.login(email, password)
+                        .enqueue(object: Callback<String> {
+                            override fun onResponse(call: Call<String>, response: Response<String>) {
+                                val bundle = bundleOf("Token" to response)
+                                val action = R.id.action_loginFragment_to_homeFragment
+                                findNavController().navigate(action, bundle)
+                            }
+                            override fun onFailure(call: Call<String>, error: Throwable) {
+                                Toast.makeText(activity, "No tweets founds!", Toast.LENGTH_SHORT).show()
+                            }
+                        })
                 }
             }
         }

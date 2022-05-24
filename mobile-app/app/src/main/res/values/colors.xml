@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="text">#667080</color>
     <color name="text_disabled">#4D667080</color>
-    <color name="main_button">#FF6200EE</color>
+    <color name="main_button">#667080</color>
 </resources>
