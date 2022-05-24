@@ -7,4 +7,5 @@
     <dimen name="label_margin_top">8sp</dimen>
     <dimen name="text_input_padding">8sp</dimen>
     <dimen name="button_padding">16dp</dimen>
+    <dimen name="titleTextSize">24sp</dimen>
 </resources>
