@@ -107,6 +107,7 @@
             android:hint="@string/login"
             android:padding="@dimen/button_padding"
             android:stateListAnimator="@null"
+            android:backgroundTint="@drawable/button_state_colors"
             android:textColorHint="@color/white"
             android:textSize="@dimen/text_size"
             tools:ignore="TextContrastCheck"
