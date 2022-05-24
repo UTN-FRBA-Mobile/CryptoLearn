@@ -1,8 +1,6 @@
 package com.mobile.test
 
-import android.R.attr.name
 import android.os.Bundle
-import android.text.TextWatcher
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.api.RetrofitClient
 import com.mobile.test.databinding.FragmentLoginBinding
-import com.mobile.test.model.LoginRequest
-import com.mobile.test.model.LoginResponse
+import com.mobile.test.model.Login.LoginRequest
+import com.mobile.test.model.Login.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

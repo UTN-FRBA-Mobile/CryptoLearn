@@ -1,7 +1,7 @@
 package com.mobile.test.api
 
-import com.mobile.test.model.LoginRequest
-import com.mobile.test.model.LoginResponse
+import com.mobile.test.model.Login.LoginRequest
+import com.mobile.test.model.Login.LoginResponse
 import retrofit2.Call
 import retrofit2.http.*
 

@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
-import com.mobile.test.databinding.FragmentLoginBinding
 import com.mobile.test.databinding.FragmentResetPasswordBinding
 
 // TODO: Rename parameter arguments, choose names that match
