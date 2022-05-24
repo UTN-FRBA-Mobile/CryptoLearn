@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.api.RetrofitClient
 import com.mobile.test.databinding.FragmentLoginBinding
+import com.mobile.test.model.LoginRequest
+import com.mobile.test.model.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,15 +71,23 @@ class LoginFragment : Fragment() {
                     toast.show()
                 }
                 else ->{
-                    RetrofitClient.service.login(email, password)
-                        .enqueue(object: Callback<String> {
-                            override fun onResponse(call: Call<String>, response: Response<String>) {
-                                val bundle = bundleOf("Token" to response)
-                                val action = R.id.action_loginFragment_to_homeFragment
-                                findNavController().navigate(action, bundle)
+                    RetrofitClient.service.login(LoginRequest(email, password))
+                        .enqueue(object: Callback<LoginResponse> {
+                            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                                if (response.isSuccessful) {
+                                    val bundle = bundleOf("Token" to response.body()?.token)
+                                    val action = R.id.action_loginFragment_to_homeFragment
+                                    findNavController().navigate(action, bundle)
+                                } else {
+                                    val toast = Toast.makeText(context, resources.getString(R.string.bad_login), Toast.LENGTH_LONG)
+                                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                                    toast.show()
+                                }
                             }
-                            override fun onFailure(call: Call<String>, error: Throwable) {
-                                Toast.makeText(activity, "No tweets founds!", Toast.LENGTH_SHORT).show()
+                            override fun onFailure(call: Call<LoginResponse>, error: Throwable) {
+                                val toast = Toast.makeText(context, resources.getString(R.string.error_occurred), Toast.LENGTH_LONG)
+                                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                                toast.show()
                             }
                         })
                 }

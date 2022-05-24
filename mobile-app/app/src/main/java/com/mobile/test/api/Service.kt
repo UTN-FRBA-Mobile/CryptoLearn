@@ -1,15 +1,14 @@
 package com.mobile.test.api
 
+import com.mobile.test.model.LoginRequest
+import com.mobile.test.model.LoginResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Service {
-    @FormUrlEncoded
-    @POST("login")
+    @Headers("Content-Type: application/json")
+    @POST("log_in")
     fun login(
-        @Field("email") email:String,
-        @Field("password") password:String
-    ): Call<String> //pq solo devuelve el token
+        @Body loginRequest: LoginRequest
+    ): Call<LoginResponse>
 }

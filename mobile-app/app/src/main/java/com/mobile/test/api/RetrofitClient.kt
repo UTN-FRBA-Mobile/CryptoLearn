@@ -5,11 +5,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "http://localhost:8080"
+    private const val BASE_URL = "http:/172.17.0.2:8080/"
 
     val service = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("https://us-central1-clases-854bb.cloudfunctions.net/list/")
+        .baseUrl(BASE_URL)
         .build()
         .create(Service::class.java)
 }
