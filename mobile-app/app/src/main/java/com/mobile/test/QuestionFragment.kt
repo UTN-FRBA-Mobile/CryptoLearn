@@ -9,6 +9,7 @@ import com.mobile.test.databinding.FragmentQuestionBinding
 import com.mobile.test.model.Question
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.flexbox.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -53,7 +54,11 @@ class QuestionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val question = Question("¿Qué es...","    Bitcoin?", mutableListOf("Una Criptomoneda", "Un Juego","Un Pais"), null)
         recyclerView = binding.questionOptionsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this.context)
+            layoutManager = FlexboxLayoutManager(this.context).apply {
+                justifyContent = JustifyContent.CENTER
+                flexDirection = FlexDirection.COLUMN
+                alignItems = AlignItems.CENTER
+            }
             adapter = QuestionOptionsAdapter(question.options)
         }
 
