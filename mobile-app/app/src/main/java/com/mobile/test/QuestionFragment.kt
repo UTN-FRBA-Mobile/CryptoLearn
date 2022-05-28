@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.mobile.test.databinding.FragmentQuestionBinding
 import com.mobile.test.model.Question
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,13 +47,21 @@ class QuestionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentQuestionBinding.inflate(inflater,container, false)
+        _binding = FragmentQuestionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val question = Question("¿Qué es...","    Bitcoin?", mutableListOf("Una Criptomoneda", "Un Juego","Un Pais"), null)
+        val question = Question(
+            "¿Qué es...",
+            "    Bitcoin?",
+            mutableListOf("Una Criptomoneda", "Un Juego", "Un Pais"),
+            null
+        )
+        binding.questionFragmentToolbar.setNavigationOnClickListener { view ->
+            findNavController().popBackStack()
+        }
         recyclerView = binding.questionOptionsRecyclerView.apply {
             layoutManager = FlexboxLayoutManager(this.context).apply {
                 justifyContent = JustifyContent.CENTER

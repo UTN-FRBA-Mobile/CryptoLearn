@@ -10,4 +10,5 @@
     <color name="text">#667080</color>
     <color name="text_disabled">#4D667080</color>
     <color name="main_button">#667080</color>
+    <color name="light_button">#EEF1F4</color>
 </resources>

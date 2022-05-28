@@ -12,56 +12,78 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/questionFragmentToolbar"
             android:layout_width="match_parent"
-            android:layout_height="60sp"
-            android:background="#C8C5C5"
-            android:gravity="center"
-            android:text="TODO: ADD HEADER COMPONENT">
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="5dp"
+            app:navigationIcon="?attr/homeAsUpIndicator" />
 
-        </TextView>
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/padding_horizontal"
-            android:paddingTop="@dimen/padding_vertical"
-            android:paddingRight="@dimen/padding_horizontal"
-            android:paddingBottom="@dimen/padding_vertical">
+            android:layout_height="match_parent">
+<!--TODO: Fix-->
 
-            <TextView
-                android:id="@+id/questionTitle"
+            <LinearLayout
+                android:id="@+id/questionLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:text="¿Qué es..."
-                android:textSize="@dimen/titleTextSize" />
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/padding_horizontal"
+                android:paddingTop="@dimen/padding_vertical"
+                android:paddingRight="@dimen/padding_horizontal"
+                android:paddingBottom="@dimen/padding_vertical">
 
-            <TextView
-                android:id="@+id/questionDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/text_margin_top"
-                android:fontFamily="sans-serif-light"
-                android:text="          Bitcoin?"
-                android:textSize="@dimen/titleTextSize" />
+                <TextView
+                    android:id="@+id/questionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="¿Qué es..."
+                    android:textSize="@dimen/titleTextSize" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/text_margin_top"
-                android:src="@drawable/chapter_1" />
+                <TextView
+                    android:id="@+id/questionDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/text_margin_top"
+                    android:fontFamily="sans-serif-light"
+                    android:text="          Bitcoin?"
+                    android:textSize="@dimen/titleTextSize" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/questionOptions_recycler_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/text_margin_top"
-                android:scrollbars="vertical" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/text_margin_top"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="@dimen/max_image_height"
+                    android:src="@drawable/chapter_1" />
 
-        </LinearLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/questionOptions_recycler_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/text_margin_top"
+                    android:scrollbars="vertical" />
+
+                <Button
+                    android:id="@+id/questionOptionButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/padding_horizontal"
+                    android:layout_marginTop="@dimen/button_margin_top"
+                    android:backgroundTint="@color/light_button"
+                    android:hint="@string/checkButton"
+                    android:minWidth="48dip"
+                    android:textAllCaps="false"
+                    android:textColorHint="@color/text"
+                    android:textSize="@dimen/text_size"
+                    tools:ignore="TextContrastCheck" />
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>
