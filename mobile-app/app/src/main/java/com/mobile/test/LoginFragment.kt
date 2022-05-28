@@ -1,14 +1,23 @@
 package com.mobile.test
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.mobile.test.api.RetrofitClient
 import com.mobile.test.databinding.FragmentLoginBinding
+import com.mobile.test.model.Login.LoginRequest
+import com.mobile.test.model.Login.LoginResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,26 +56,62 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.loginButton.isEnabled = false
+
         _binding?.loginButton?.setOnClickListener{
-            val email = binding.email.text.toString()
-            val password = binding.password.text.toString()
+            val email = binding.email.text.toString().trim()
+            val password = binding.password.text.toString().trim()
 
             when{
                 email.isEmpty() or password.isEmpty() -> {
-                    // TODO: Show toast
-                    print("Llena los campos mi rey")
+                    val toast = Toast.makeText(context, "Llená los  campos mi rey", Toast.LENGTH_LONG)
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 190);
+                    toast.show()
                 }
                 else ->{
-                    val bundle = bundleOf("Email" to email,"Password" to password)
-                    val action = R.id.action_loginFragment_to_homeFragment
-                    findNavController().navigate(action, bundle)
+                    RetrofitClient.service.login(LoginRequest(email, password))
+                        .enqueue(object: Callback<LoginResponse> {
+                            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                                if (response.isSuccessful) {
+                                    val bundle = bundleOf("Token" to response.body()?.token)
+                                    val action = R.id.action_loginFragment_to_homeFragment
+                                    findNavController().navigate(action, bundle)
+                                } else {
+                                    val toast = Toast.makeText(context, resources.getString(R.string.bad_login), Toast.LENGTH_LONG)
+                                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                                    toast.show()
+                                }
+                            }
+                            override fun onFailure(call: Call<LoginResponse>, error: Throwable) {
+                                val toast = Toast.makeText(context, resources.getString(R.string.error_occurred), Toast.LENGTH_LONG)
+                                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                                toast.show()
+                            }
+                        })
                 }
             }
+        }
+
+        binding.email.doAfterTextChanged {
+            checkRequiredFields()
+        }
+
+        binding.password.doAfterTextChanged {
+            checkRequiredFields()
+        }
+
+        _binding?.forgotPassword?.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment)
         }
 
         _binding?.signUp?.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
         }
+    }
+
+    private fun checkRequiredFields() {
+        binding.loginButton.isEnabled =
+            binding.email.text.toString().isNotEmpty() && binding.password.text.toString().isNotEmpty()
     }
 
     companion object {
