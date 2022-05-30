@@ -4,18 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable name="chapterTitle" type="String" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ChapterFragment">
+        tools:context=".ChapterFragment"
+        android:orientation="vertical">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#000000"
+            android:textColorHint="@color/text"
+            android:textSize="30sp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@{chapterTitle}" />
+
+        <WebView
+            android:id="@+id/chapterWebView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Chapter screen" />
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/goToQuestion"
@@ -30,5 +43,5 @@
             android:textSize="@dimen/text_size"
             tools:ignore="TextContrastCheck" />
 
-    </FrameLayout>
+    </LinearLayout>
 </layout>

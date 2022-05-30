@@ -11,11 +11,8 @@ import com.mobile.test.databinding.FragmentHomeBinding
 import com.mobile.test.model.Chapter
 import com.mobile.test.model.Level
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
+// the fragment initialization parameters
+private const val ARG_PARAM_TOKEN = "Token"
 /**
  * A simple [Fragment] subclass.
  * Use the [HomeFragment.newInstance] factory method to
@@ -23,8 +20,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var token: String? = null
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
@@ -33,8 +29,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            token = it.getString(ARG_PARAM_TOKEN)
         }
     }
 
@@ -54,12 +49,14 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_chapterFragment)
         }*/
 
+
+
         // En el futuro, sacar 'levels' de la API
         val levels = mutableListOf(
             Level(
                 chapters = mutableListOf(
                     Chapter(
-                        name = "Capitulo 1",
+                        name = "Capitulo 1 - View Binding",
                         image = "chapter_1.png",
                         url = "https://devexperto.com/view-binding/",
                         status = "pending",
@@ -118,11 +115,10 @@ class HomeFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(token: String) =
             HomeFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(ARG_PARAM_TOKEN, token)
                 }
             }
     }

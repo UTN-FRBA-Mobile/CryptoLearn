@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.test.model.Chapter
@@ -25,12 +26,15 @@ class ChaptersAdapter(private val chapters: MutableList<Chapter>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        val image = chapters[position].image
-//        holder.view.findViewById<TextView>(R.id.chapter_image).background = createFromPath("res/drawable/chapter_3.png")
+        // PARA ESTO DIJERON QUE HAGAMOS UN MAPA CON LOS RESOURCES Y LO ACCEDAMOS POR KEY ACA
+        // val image = chapters[position].image
+        // holder.view.findViewById<TextView>(R.id.chapter_image).background = createFromPath("res/drawable/chapter_3.png")
         holder.view.findViewById<TextView>(R.id.chapter_name).text = chapters[position].name
         // TODO: Send specific information to each chapter with navigation
         holder.view.findViewById<Button>(R.id.chapter_image).setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_chapterFragment)
+            // Para mi aca deberiamos pasarle un ID de chapter y que el componente se ocupe de buscar la data del back en el onCreate
+            val bundle = bundleOf("chapterData" to chapters[position])
+            view.findNavController().navigate(R.id.action_homeFragment_to_chapterFragment, bundle)
         }
     }
 
