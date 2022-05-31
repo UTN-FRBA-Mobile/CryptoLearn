@@ -57,14 +57,14 @@ class HomeFragment : Fragment() {
                 chapters = mutableListOf(
                     Chapter(
                         name = "Capitulo 1 - View Binding",
-                        image = "chapter_1.png",
+                        image = "chapter_1",
                         url = "https://devexperto.com/view-binding/",
                         status = "pending",
                         questions = mutableListOf()
                     ),
                     Chapter(
                         name = "Capitulo 2",
-                        image = "chapter_2.png",
+                        image = "chapter_2",
                         url = "https://devexperto.com/view-binding/",
                         status = "pending",
                         questions = mutableListOf()
@@ -75,21 +75,21 @@ class HomeFragment : Fragment() {
                 chapters = mutableListOf(
                     Chapter(
                         name = "Capitulo 3",
-                        image = "chapter_3.png",
+                        image = "chapter_3",
                         url = "https://devexperto.com/view-binding/",
                         status = "pending",
                         questions = mutableListOf()
                     ),
                     Chapter(
                         name = "Capitulo 4",
-                        image = "chapter_2.png",
+                        image = "chapter_2",
                         url = "https://devexperto.com/view-binding/",
                         status = "pending",
                         questions = mutableListOf()
                     ),
                     Chapter(
                         name = "Capitulo 5",
-                        image = "chapter_3.png",
+                        image = "chapter_3",
                         url = "https://devexperto.com/view-binding/",
                         status = "pending",
                         questions = mutableListOf()
