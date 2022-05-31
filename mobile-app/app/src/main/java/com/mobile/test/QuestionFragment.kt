@@ -54,14 +54,15 @@ class QuestionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val question = Question(
             "¿Qué es...",
-            "    Bitcoin?",
+            "           Bitcoin?",
             mutableListOf("Una Criptomoneda", "Un Juego", "Un Pais"),
             null
         )
-        binding.questionFragmentToolbar.setNavigationOnClickListener { view ->
+        binding.questionFragmentToolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
-
+        binding.questionTitle.text = question.questionTitle
+        binding.questionDescription.text = question.questionDescription
         val manager = object : FlexboxLayoutManager(this.context) {
             override fun canScrollVertically(): Boolean {
                 return false

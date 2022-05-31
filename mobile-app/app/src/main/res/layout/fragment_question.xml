@@ -23,7 +23,7 @@
         <LinearLayout
             android:id="@+id/questionLinearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="@dimen/padding_horizontal"
             android:paddingTop="@dimen/padding_vertical"
@@ -35,7 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:text="¿Qué es..."
                 android:textSize="@dimen/titleTextSize" />
 
             <TextView
@@ -44,7 +43,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/text_margin_top"
                 android:fontFamily="sans-serif-light"
-                android:text="          Bitcoin?"
                 android:textSize="@dimen/titleTextSize" />
 
             <ImageView
