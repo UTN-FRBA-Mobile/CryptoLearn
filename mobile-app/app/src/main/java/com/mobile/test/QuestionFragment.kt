@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.databinding.FragmentQuestionBinding
 import com.mobile.test.model.Question
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
 
@@ -62,8 +61,18 @@ class QuestionFragment : Fragment() {
         binding.questionFragmentToolbar.setNavigationOnClickListener { view ->
             findNavController().popBackStack()
         }
+
+        val manager = object : FlexboxLayoutManager(this.context) {
+            override fun canScrollVertically(): Boolean {
+                return false
+            }
+
+            override fun canScrollHorizontally(): Boolean {
+                return false
+            }
+        }
         recyclerView = binding.questionOptionsRecyclerView.apply {
-            layoutManager = FlexboxLayoutManager(this.context).apply {
+            layoutManager = manager.apply {
                 justifyContent = JustifyContent.CENTER
                 flexDirection = FlexDirection.COLUMN
                 alignItems = AlignItems.CENTER
