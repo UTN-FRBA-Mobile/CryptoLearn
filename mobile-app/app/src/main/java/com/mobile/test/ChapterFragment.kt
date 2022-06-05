@@ -44,6 +44,7 @@ class ChapterFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentChapterBinding.inflate(inflater,container, false)
         binding.chapterTitle = chapterData?.name //recibir el titulo por props del componente
+        binding.asd = chapterData?.questions?.get(0) ?: null
 
         return binding.root
     }
@@ -55,23 +56,21 @@ class ChapterFragment : Fragment() {
             findNavController().navigate(R.id.action_chapterFragment_to_questionFragment)
         }
 
-
-
-        val myWebView = view.findViewById(R.id.chapterWebView) as WebView
-        myWebView.settings.loadsImagesAutomatically = true
-        myWebView.settings.javaScriptEnabled = true
-        myWebView.settings.domStorageEnabled = true
-        myWebView.settings.builtInZoomControls = true
-        myWebView.settings.setSupportZoom(true)
-        myWebView.webViewClient = WebViewClient()
-        myWebView.settings.userAgentString = USER_AGENT;
+        // Set up WebView
+        binding.chapterWebView.settings.loadsImagesAutomatically = true
+        binding.chapterWebView.settings.javaScriptEnabled = true
+        binding.chapterWebView.settings.domStorageEnabled = true
+        binding.chapterWebView.settings.builtInZoomControls = true
+        binding.chapterWebView.settings.setSupportZoom(true)
+        binding.chapterWebView.webViewClient = WebViewClient()
+        binding.chapterWebView.settings.userAgentString = USER_AGENT;
         if (chapterData?.url?.isNotEmpty() == true) {
-            myWebView.loadUrl(chapterData!!.url!!)
+            binding.chapterWebView.loadUrl(chapterData!!.url!!)
         } else {
             val unencodedHtml =
                 "<html><body> No se pudo cargar el capitulo porque no se econtro ninguna URL para mostrar </body></html>";
             val encodedHtml = Base64.encodeToString(unencodedHtml.toByteArray(), Base64.NO_PADDING)
-            myWebView.loadData(encodedHtml, "text/html", "base64")
+            binding.chapterWebView.loadData(encodedHtml, "text/html", "base64")
         }
     }
 
@@ -90,6 +89,7 @@ class ChapterFragment : Fragment() {
             ChapterFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PARAM_CHAPTER_DATA, chapterData)
+
                 }
             }
     }

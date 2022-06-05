@@ -2,10 +2,7 @@ from flask import Response, jsonify, render_template
 from flask_smorest import Blueprint
 from flask.views import MethodView
 from app.controllers.levels.models import (
-    LevelsByUser,
-    Question_1_1,
-    Question_2_1,
-    Question_2_2,
+    LevelsByUser
 )
 import flask_jwt_extended as flask_jwt
 
@@ -35,23 +32,23 @@ class LevelsResource(MethodView):
         return jsonify(response=response), 200
 
 
-@blp.route("/<chapter>/<question>")
-class LevelsViewResource(MethodView):
-    @staticmethod
-    # @flask_jwt.jwt_required()
-    @blp.response(200, example="<HTML>...")
-    def get(chapter: str, question: str):
-        chapter, question = int(chapter), int(question)
-        if chapter == 1:
-            return Response(
-                Question_1_1.to_json(), content_type="application/json", status=200
-            )
-        else:
-            if question == 1:
-                return Response(
-                    Question_2_1.to_json(), content_type="application/json", status=200
-                )
-            else:
-                return Response(
-                    Question_2_2.to_json(), content_type="application/json", status=200
-                )
+# @blp.route("/<chapter>/<question>")
+# class LevelsViewResource(MethodView):
+#     @staticmethod
+#     # @flask_jwt.jwt_required()
+#     @blp.response(200, example="<HTML>...")
+#     def get(chapter: str, question: str):
+#         chapter, question = int(chapter), int(question)
+#         if chapter == 1:
+#             return Response(
+#                 Question_1_1.to_json(), content_type="application/json", status=200
+#             )
+#         else:
+#             if question == 1:
+#                 return Response(
+#                     Question_2_1.to_json(), content_type="application/json", status=200
+#                 )
+#             else:
+#                 return Response(
+#                     Question_2_2.to_json(), content_type="application/json", status=200
+#                 )

@@ -1,4 +1,4 @@
-package com.mobile.test.model.Login
+package com.mobile.test.api
 
 data class LoginRequest (
     val email: String,

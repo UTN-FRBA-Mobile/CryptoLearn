@@ -12,8 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.api.RetrofitClient
 import com.mobile.test.databinding.FragmentLoginBinding
-import com.mobile.test.model.Login.LoginRequest
-import com.mobile.test.model.Login.LoginResponse
+import com.mobile.test.api.LoginRequest
+import com.mobile.test.api.LoginResponse
+import com.mobile.test.api.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +36,7 @@ class LoginFragment : Fragment() {
     private var param2: String? = null
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,13 +71,14 @@ class LoginFragment : Fragment() {
                     toast.show()
                 }
                 else ->{
+                    sessionManager = SessionManager.getInstance(requireContext())
                     RetrofitClient.service.login(LoginRequest(email, password))
                         .enqueue(object: Callback<LoginResponse> {
                             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                                 if (response.isSuccessful) {
-                                    val bundle = bundleOf("Token" to response.body()?.token)
+                                    sessionManager.saveAuthToken(response.body()?.token!!)
                                     val action = R.id.action_loginFragment_to_homeFragment
-                                    findNavController().navigate(action, bundle)
+                                    findNavController().navigate(action)
                                 } else {
                                     val toast = Toast.makeText(context, resources.getString(R.string.bad_login), Toast.LENGTH_LONG)
                                     toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);

@@ -15,7 +15,9 @@ data class Chapter(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        TODO("questions")
+        arrayListOf<Question>().apply {
+            parcel.readArrayList(Question::class.java.classLoader)
+        }
     ) {}
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -23,6 +25,7 @@ data class Chapter(
         parcel.writeString(url)
         parcel.writeString(image)
         parcel.writeString(status)
+        parcel.writeList(questions)
     }
 
     override fun describeContents(): Int {
