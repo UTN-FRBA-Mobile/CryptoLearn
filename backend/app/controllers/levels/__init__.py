@@ -44,14 +44,14 @@ class LevelsViewResource(MethodView):
         chapter, question = int(chapter), int(question)
         if chapter == 1:
             return Response(
-                Question_1_1.to_html(), content_type="text/html", status=200
+                Question_1_1.to_json(), content_type="application/json", status=200
             )
         else:
             if question == 1:
                 return Response(
-                    Question_2_1.to_html(), content_type="text/html", status=200
+                    Question_2_1.to_json(), content_type="application/json", status=200
                 )
             else:
                 return Response(
-                    Question_2_2.to_html(), content_type="text/html", status=200
+                    Question_2_2.to_json(), content_type="application/json", status=200
                 )

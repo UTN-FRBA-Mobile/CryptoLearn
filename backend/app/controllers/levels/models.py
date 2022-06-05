@@ -1,6 +1,21 @@
+import json
 from typing import List
 
 from app.services.database.user import User
+
+
+class Question:
+    def __init__(self, question: str, options: List[str], answer: int) -> None:
+        self.question = question
+        self.options = options
+        self.answer = answer
+
+    def to_json(self):
+        return {
+            "question": self.question,
+            "options": self.options,
+            "answer": self.answer,
+        }
 
 
 class Level:
@@ -8,42 +23,18 @@ class Level:
         self,
         name: str,
         url: str,
-        question: str,
-        options: List[str],
-        answer: int,
+        questions: List[Question],
     ) -> None:
         self.name = name
         self.url = url
-        self.question = question
-        self.options = options
-        self.answer = answer
+        self.questions = questions
 
     def to_json(self):
         return {
             "name": self.name,
             "url": self.url,
-            "question": self.question,
-            "options": self.options,
-            "answer": self.answer,
+            "questions": list(map(lambda x: x.to_json(), self.questions)),
         }
-
-    def to_html(self):
-        return f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{self.name}</title>
-</head>
-<body>
-    <h1>{self.question}</h1>
-    <li>{self.options[0]}</li>
-    <li>{self.options[1]}</li>    
-</body>
-</html>
-"""
 
 
 class LevelsByUser:
@@ -65,24 +56,18 @@ class LevelsByUser:
 Question_1_1 = Level(
     "Capitulo 1",
     "http://localhost:8080/levels/1/1",
-    "Que es el bitcoin?",
-    ["Un gusto de helado", "Una criptomoneda"],
-    0,
+    [Question("Que es el bitcoin?", ["Un gusto de helado", "Una criptomoneda"], 1)],
 )
 
 Question_2_1 = Level(
     "Capitulo 2",
     "http://localhost:8080/levels/2/1",
-    "Que es el usdt?",
-    ["Un gusto de helado", "Una criptomoneda"],
-    0,
+    [Question("Que es el usdt?", ["Un gusto de helado", "Una criptomoneda"], 1)],
 )
 Question_2_2 = Level(
     "Capitulo 2",
     "http://localhost:8080/levels/2/2",
-    "Que es el etherium?",
-    ["Un gusto de helado", "Una criptomoneda"],
-    0,
+    [Question("Que es el etherium?", ["Un gusto de helado", "Una criptomoneda"], 1)],
 )
 
 levels_by_user = {
