@@ -1,4 +1,4 @@
-from flask import Response, render_template
+from flask import Response, jsonify, render_template
 from flask_smorest import Blueprint
 from flask.views import MethodView
 from app.controllers.levels.models import (
@@ -32,7 +32,7 @@ class LevelsResource(MethodView):
         print(flask_jwt.get_jwt_identity())
         levels = LevelsByUser.get_levels_by_user(email)
         response = list(map(lambda x: x.to_json(), levels))
-        return response, 200
+        return jsonify(response=response), 200
 
 
 @blp.route("/<chapter>/<question>")
