@@ -60,10 +60,8 @@ class HomeFragment : Fragment() {
                 override fun onResponse(call: Call<LevelsResponse>, response: Response<LevelsResponse>) {
                     if (response.isSuccessful) {
                         levels = response.body()?.response!!
-                        recyclerView = binding.levelsRecyclerView.apply {
-                            layoutManager = LinearLayoutManager(this.context)
-                            adapter = LevelsAdapter(levels)
-                        }
+                        recyclerView.adapter = LevelsAdapter(levels)
+                        recyclerView.adapter!!.notifyDataSetChanged()
                     } else {
                         val toast = Toast.makeText(context, resources.getString(R.string.bad_get_levels), Toast.LENGTH_LONG)
                         toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);

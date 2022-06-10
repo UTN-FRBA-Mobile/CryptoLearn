@@ -4,16 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.test.model.Level
+import org.w3c.dom.Text
 
 class LevelsAdapter(private val levels: List<Level>):
     RecyclerView.Adapter<LevelsAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(level: Level, position: Int) {
-            itemView.findViewById<EditText>(R.id.level_name).setText("Nivel ${position+1}")
+            itemView.findViewById<TextView>(R.id.level_name).text = "Nivel ${position+1}"
             val childMembersAdapter = ChaptersAdapter(level.chapters)
             itemView.findViewById<RecyclerView>(R.id.chapters_recycler_view).layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
             itemView.findViewById<RecyclerView>(R.id.chapters_recycler_view).adapter = childMembersAdapter
