@@ -1,50 +1,50 @@
+import json
 from typing import List
 
 from app.services.database.user import User
 
-
-class Level:
-    def __init__(
-        self,
-        name: str,
-        url: str,
-        question: str,
-        options: List[str],
-        answer: int,
-    ) -> None:
-        self.name = name
-        self.url = url
+class Question:
+    def __init__(self, question: str, options: List[str], answer: int) -> None:
         self.question = question
         self.options = options
         self.answer = answer
 
     def to_json(self):
         return {
-            "name": self.name,
-            "url": self.url,
             "question": self.question,
             "options": self.options,
             "answer": self.answer,
         }
 
-    def to_html(self):
-        return f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{self.name}</title>
-</head>
-<body>
-    <h1>{self.question}</h1>
-    <li>{self.options[0]}</li>
-    <li>{self.options[1]}</li>    
-</body>
-</html>
-"""
+class Chapter:
+    def __init__(
+        self,
+        name: str,
+        url: str,
+        questions: List[Question],
+        image: str,
+    ) -> None:
+        self.name = name
+        self.url = url
+        self.questions = questions
+        self.image = image
 
+    def to_json(self):
+        return {
+            "name": self.name,
+            "url": self.url,
+            "questions": list(map(lambda x: x.to_json(), self.questions)),
+            "image": self.image
+        }
+
+class Level:
+    def __init__(self, chapters: List[Chapter]) -> None:
+        self.chapters = chapters
+
+    def to_json(self):
+        return {
+            "chapters": list(map(lambda x: x.to_json(), self.chapters)),
+        }
 
 class LevelsByUser:
     def __init__(self, level: Level, user: User, state: str) -> None:
@@ -61,39 +61,33 @@ class LevelsByUser:
         rta["state"] = self.state
         return rta
 
-
-Question_1_1 = Level(
+Chapter_1 = Chapter(
     "Capitulo 1",
     "http://localhost:8080/levels/1/1",
-    "Que es el bitcoin?",
-    ["Un gusto de helado", "Una criptomoneda"],
-    0,
+    [Question("Que es el bitcoin?", ["Un gusto de helado", "Una criptomoneda"], 1)],
+    "chapter_1"
 )
 
-Question_2_1 = Level(
+Chapter_2 = Chapter(
     "Capitulo 2",
     "http://localhost:8080/levels/2/1",
-    "Que es el usdt?",
-    ["Un gusto de helado", "Una criptomoneda"],
-    0,
+    [
+        Question("Que es el usdt?", ["Un gusto de helado", "Una criptomoneda"], 1),
+        Question("Que es el etherium?", ["Un gusto de helado", "Una criptomoneda"], 1)
+    ],
+    "chapter_2"
 )
-Question_2_2 = Level(
-    "Capitulo 2",
-    "http://localhost:8080/levels/2/2",
-    "Que es el etherium?",
-    ["Un gusto de helado", "Una criptomoneda"],
-    0,
-)
+
+Level_1 = Level([
+    Chapter_1,
+    Chapter_2,
+])
 
 levels_by_user = {
     "admin1@gmail.com": [
-        LevelsByUser(Question_1_1, User("admin1@gmail.com", ""), "completado"),
-        LevelsByUser(Question_2_1, User("admin1@gmail.com", ""), "en-curso"),
-        LevelsByUser(Question_2_2, User("admin1@gmail.com", ""), "no-iniciado"),
+        LevelsByUser(Level_1, User("admin1@gmail.com", ""), "en-curso"),
     ],
     "admin2@gmail.com": [
-        LevelsByUser(Question_1_1, User("admin2@gmail.com", ""), "completado"),
-        LevelsByUser(Question_2_1, User("admin2@gmail.com", ""), "completado"),
-        LevelsByUser(Question_2_2, User("admin2@gmail.com", ""), "completado"),
+        LevelsByUser(Level_1, User("admin2@gmail.com", ""), "completado"),
     ],
 }

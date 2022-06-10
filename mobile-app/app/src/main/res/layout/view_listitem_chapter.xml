@@ -8,14 +8,13 @@
 
     <Button
         android:id="@+id/chapter_image"
-        android:background="@drawable/chapter_2"
         android:layout_width="100sp"
         android:layout_height="100sp" />
 
     <TextView
         android:id="@+id/chapter_name"
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:gravity="center" />
 
 </LinearLayout>

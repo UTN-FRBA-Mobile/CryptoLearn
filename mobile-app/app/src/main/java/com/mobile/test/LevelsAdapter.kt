@@ -3,30 +3,21 @@ package com.mobile.test
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.test.model.Level
 
-class LevelsAdapter(private val levels: MutableList<Level>):
+class LevelsAdapter(private val levels: List<Level>):
     RecyclerView.Adapter<LevelsAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        init {
-//            itemView.setOnClickListener {
-//                onItemClick?.invoke(gameOfThronesHouseList[adapterPosition])
-//
-//            }
-//
-//
-//        }
-
-        fun bind(level: Level) {
-            //itemView.level_name.text = "Nivel 1"
+        fun bind(level: Level, position: Int) {
+            itemView.findViewById<EditText>(R.id.level_name).setText("Nivel ${position+1}")
             val childMembersAdapter = ChaptersAdapter(level.chapters)
             itemView.findViewById<RecyclerView>(R.id.chapters_recycler_view).layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
             itemView.findViewById<RecyclerView>(R.id.chapters_recycler_view).adapter = childMembersAdapter
         }
-
     }
 
     override fun onCreateViewHolder(
@@ -40,7 +31,7 @@ class LevelsAdapter(private val levels: MutableList<Level>):
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(levels[position])
+        holder.bind(levels[position], position)
     }
 
 /*    override fun getItemViewType(position: Int): Int {

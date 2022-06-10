@@ -20,4 +20,5 @@
     <string name="error_occurred">Ocurrió un error. Por favor, intenta más tarde</string>
     <string name="bad_login">El email o la contraseña son incorrectos</string>
     <string name="checkButton">CHECK</string>
+    <string name="bad_get_levels">Hubo un error al cargar los niveles</string>
 </resources>
