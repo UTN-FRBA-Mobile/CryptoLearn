@@ -43,9 +43,7 @@ class ChapterFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentChapterBinding.inflate(inflater,container, false)
-        binding.chapterTitle = chapterData?.name //recibir el titulo por props del componente
-        binding.asd = chapterData?.questions?.get(0) ?: null
-
+        binding.chapterTitle = chapterData?.name
         return binding.root
     }
 

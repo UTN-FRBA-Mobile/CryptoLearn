@@ -35,7 +35,7 @@ class ChaptersAdapter(private val chapters: MutableList<Chapter>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val image = chapters[position].image
-        holder.view.findViewById<TextView>(R.id.chapter_image).setBackgroundResource(imagesMap[image]!!)
+        // holder.view.findViewById<TextView>(R.id.chapter_image).setBackgroundResource(imagesMap[image]!!)
         holder.view.findViewById<TextView>(R.id.chapter_name).text = chapters[position].name
         // TODO: Send specific information to each chapter with navigation
         holder.view.findViewById<Button>(R.id.chapter_image).setOnClickListener { view ->

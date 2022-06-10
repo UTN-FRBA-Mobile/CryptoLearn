@@ -36,7 +36,7 @@
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/view_listitem_chapter.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/view_listitem_level.xml" value="0.35520833333333335" />
-
+        <entry key="app/src/main/res/layout/view_listitem_level.xml" value="0.25" />
       </map>
     </option>
   </component>

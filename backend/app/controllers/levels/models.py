@@ -63,14 +63,14 @@ class LevelsByUser:
 
 Chapter_1 = Chapter(
     "Capitulo 1",
-    "http://localhost:8080/levels/1/1",
+    "https://www.newscientist.com/definition/bitcoin",
     [Question("Que es el bitcoin?", ["Un gusto de helado", "Una criptomoneda"], 1)],
     "chapter_1"
 )
 
 Chapter_2 = Chapter(
     "Capitulo 2",
-    "http://localhost:8080/levels/2/1",
+    "https://www.newscientist.com/definition/bitcoin",
     [
         Question("Que es el usdt?", ["Un gusto de helado", "Una criptomoneda"], 1),
         Question("Que es el etherium?", ["Un gusto de helado", "Una criptomoneda"], 1)
