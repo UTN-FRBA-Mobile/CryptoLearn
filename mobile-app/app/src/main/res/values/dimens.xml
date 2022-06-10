@@ -2,9 +2,12 @@
 <resources>
     <dimen name="text_size">16sp</dimen>
     <dimen name="padding_horizontal">24sp</dimen>
-    <dimen name="padding_vertical">48sp</dimen>
+    <dimen name="padding_vertical">24sp</dimen>
     <dimen name="text_margin_top">16sp</dimen>
     <dimen name="label_margin_top">8sp</dimen>
     <dimen name="text_input_padding">8sp</dimen>
     <dimen name="button_padding">16dp</dimen>
+    <dimen name="titleTextSize">24sp</dimen>
+    <dimen name="max_image_height">100sp</dimen>
+    <dimen name="button_margin_top">48sp</dimen>
 </resources>

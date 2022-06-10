@@ -7,7 +7,6 @@
     <string name="password">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
     <string name="forgot_password"><u>Olvidé mi contraseña</u></string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="signup_description">Ingresá tus datos a continuación o&#160;</string>
     <string name="login_action"><u>iniciá sesión</u></string>
@@ -15,13 +14,11 @@
     <string name="last_name">Apellido</string>
     <string name="name">Nombre</string>
     <string name="confirm_password">Confirmar constraseña</string>
-
     <string name="recover_password">Recuperar contraseña</string>
     <string name="recover_password_description">¿Cuál es tu email?</string>
     <string name="send_recovery_link">Enviar</string>
-
     <string name="error_occurred">Ocurrió un error. Por favor, intenta más tarde</string>
     <string name="bad_login">El email o la contraseña son incorrectos</string>
+    <string name="checkButton">CHECK</string>
     <string name="bad_get_levels">Hubo un error al cargar los niveles</string>
-
 </resources>
