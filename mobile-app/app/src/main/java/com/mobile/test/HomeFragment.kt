@@ -52,19 +52,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var levels: List<Level> = listOf(
-            Level(
-                mutableListOf(
-                    Chapter(
-                        "",
-                        "",
-                        "",
-                        "",
-                        mutableListOf(Question("", "", mutableListOf(""), 1))
-                    )
-                )
-            )
-        );
+        var levels: List<Level>? = null
 
         sessionManager = SessionManager.getInstance(requireContext())
         RetrofitClient.service.getLevels(token = "Bearer ${sessionManager.fetchAuthToken()}")

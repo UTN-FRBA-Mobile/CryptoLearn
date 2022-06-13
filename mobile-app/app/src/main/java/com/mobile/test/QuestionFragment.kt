@@ -1,21 +1,23 @@
 package com.mobile.test
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.databinding.FragmentQuestionBinding
-import com.mobile.test.model.Question
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
+import com.mobile.test.model.Chapter
 
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM_CHAPTER_DATA = "chapterData"
+
 
 /**
  * A simple [Fragment] subclass.
@@ -26,18 +28,17 @@ private const val ARG_PARAM2 = "param2"
 
 class QuestionFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var chapterData: Chapter
     private var _binding: FragmentQuestionBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
+    private var questionIndex: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            chapterData = it.get(ARG_PARAM_CHAPTER_DATA) as Chapter
         }
     }
 
@@ -52,17 +53,7 @@ class QuestionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val question = Question(
-            "¿Qué es...",
-            "           Bitcoin?",
-            mutableListOf("Una Criptomoneda", "Un Juego", "Un Pais"),
-            null
-        )
-        binding.questionFragmentToolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-        binding.questionTitle.text = question.questionTitle
-        binding.questionDescription.text = question.questionDescription
+
         val manager = object : FlexboxLayoutManager(this.context) {
             override fun canScrollVertically(): Boolean {
                 return false
@@ -72,15 +63,46 @@ class QuestionFragment : Fragment() {
                 return false
             }
         }
+
         recyclerView = binding.questionOptionsRecyclerView.apply {
             layoutManager = manager.apply {
                 justifyContent = JustifyContent.CENTER
                 flexDirection = FlexDirection.COLUMN
                 alignItems = AlignItems.CENTER
             }
-            adapter = QuestionOptionsAdapter(question.options)
         }
 
+        // Carga los datos de la primer pregunta en la view
+        this.showNextQuestion()
+
+        binding.questionFragmentToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.questionOptionButton.setOnClickListener {
+            // TODO: validar si la pregunta esta bien
+
+            // Carga los datos de la siguiente pregunta en la view
+            questionIndex++
+            this.showNextQuestion()
+        }
+    }
+
+    fun showNextQuestion() {
+        if(questionIndex < chapterData.questions!!.count()) {
+            chapterData.questions!![questionIndex].let {
+                binding.questionTitle.text = it.questionTitle
+                binding.questionDescription.text = it.questionDescription
+                binding.questionTitle.text = it.questionTitle
+                binding.questionDescription.text = it.questionDescription
+
+                recyclerView.adapter = QuestionOptionsAdapter(it.options)
+                recyclerView.adapter!!.notifyDataSetChanged()
+            }
+        } else {
+            // TODO: que pasa si se terminan las preguntas
+            findNavController().navigate(R.id.action_questionFragment_to_homeFragment)
+        }
     }
 
     companion object {
@@ -97,8 +119,7 @@ class QuestionFragment : Fragment() {
         fun newInstance(param1: String, param2: String) =
             QuestionFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putParcelable(ARG_PARAM_CHAPTER_DATA, chapterData)
                 }
             }
     }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.databinding.FragmentChapterBinding
@@ -51,12 +52,13 @@ class ChapterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.goToQuestion.setOnClickListener{
-            findNavController().navigate(R.id.action_chapterFragment_to_questionFragment)
+            val bundle = bundleOf("chapterData" to chapterData)
+            findNavController().navigate(R.id.action_chapterFragment_to_questionFragment, bundle)
         }
 
-//        binding.chapterFragmentToolbar.setNavigationOnClickListener {
-//            findNavController().popBackStack()
-//        }
+        binding.chapterFragmentToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         // Set up WebView
         binding.chapterWebView.settings.loadsImagesAutomatically = true
@@ -81,8 +83,6 @@ class ChapterFragment : Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment ChapterFragment.
          */
         // TODO: Rename and change types and number of parameters
@@ -91,7 +91,6 @@ class ChapterFragment : Fragment() {
             ChapterFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PARAM_CHAPTER_DATA, chapterData)
-
                 }
             }
     }

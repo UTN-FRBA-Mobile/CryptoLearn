@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobile.test.model.Level
 import org.w3c.dom.Text
 
-class LevelsAdapter(private val levels: List<Level>):
+class LevelsAdapter(private val levels: List<Level>?):
     RecyclerView.Adapter<LevelsAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(level: Level, position: Int) {
-            itemView.findViewById<TextView>(R.id.level_name).text = "Nivel ${position+1}"
-            val childMembersAdapter = ChaptersAdapter(level.chapters)
-            itemView.findViewById<RecyclerView>(R.id.chapters_recycler_view).layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
-            itemView.findViewById<RecyclerView>(R.id.chapters_recycler_view).adapter = childMembersAdapter
+        fun bind(level: Level?, position: Int) {
+            if(level != null) {
+                itemView.findViewById<TextView>(R.id.level_name).text = "Nivel ${position+1}"
+                itemView.findViewById<RecyclerView>(R.id.chapters_recycler_view).layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL,false)
+                itemView.findViewById<RecyclerView>(R.id.chapters_recycler_view).adapter = ChaptersAdapter(level.chapters)
+            }
         }
     }
 
@@ -33,7 +34,9 @@ class LevelsAdapter(private val levels: List<Level>):
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(levels[position], position)
+        if(!levels.isNullOrEmpty()) {
+            holder.bind(levels[position], position)
+        }
     }
 
 /*    override fun getItemViewType(position: Int): Int {
@@ -43,5 +46,5 @@ class LevelsAdapter(private val levels: List<Level>):
             VIEWTYPE_MOVIE
     }*/
 
-    override fun getItemCount() = levels.size
+    override fun getItemCount() = if (!levels.isNullOrEmpty()) levels.size else 0
 }

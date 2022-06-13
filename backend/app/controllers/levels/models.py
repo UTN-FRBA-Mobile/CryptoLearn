@@ -11,9 +11,9 @@ class Question:
 
     def to_json(self):
         return {
-            "question": self.question,
+            "questionTitle": self.question,
             "options": self.options,
-            "answer": self.answer,
+            "answerIndex": self.answer,
         }
 
 class Chapter:
@@ -64,7 +64,11 @@ class LevelsByUser:
 Chapter_1 = Chapter(
     "Capitulo 1",
     "https://www.newscientist.com/definition/bitcoin",
-    [Question("Que es el bitcoin?", ["Un gusto de helado", "Una criptomoneda"], 1)],
+    [
+        Question("Que es el bitcoin?", ["Un gusto de helado", "Una criptomoneda"], 1),
+        Question("Lorem ipsum asd dofnsd", ["agsgdsf", "asdf"], 2),
+        Question("Quasde sdknfiab afjkdfba sfnj?", ["ofoeeoroef", "osoeoeofjeso"], 1)
+    ],
     "chapter_1"
 )
 
@@ -78,15 +82,25 @@ Chapter_2 = Chapter(
     "chapter_2"
 )
 
+Chapter_3 = Chapter(
+    "Capitulo 3",
+    "https://www.newscientist.com/definition/bitcoin",
+    [
+        Question("Lorem Ipsum Lorem Ipsum", ["Un gusto de teclado", "Una silla"], 1),
+        Question("Que es el amor?", ["Una forma de vivir", "La feria de verduras"], 1)
+    ],
+    "chapter_3"
+)
+
 Level_1 = Level([
     Chapter_1,
-    Chapter_1,
     Chapter_2,
+    Chapter_3,
 ])
 Level_2 = Level([
+    Chapter_3,
+    Chapter_2,
     Chapter_1,
-    Chapter_2,
-    Chapter_2,
     Chapter_2,
 ])
 

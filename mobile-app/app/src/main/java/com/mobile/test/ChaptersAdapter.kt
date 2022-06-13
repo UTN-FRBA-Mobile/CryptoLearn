@@ -17,8 +17,7 @@ private val imagesMap = mapOf<String, Int>(
     "chapter_3" to R.drawable.chapter_3
 )
 
-
-class ChaptersAdapter(private val chapters: MutableList<Chapter>) :
+class ChaptersAdapter(private val chapters: MutableList<Chapter>?) :
     RecyclerView.Adapter<ChaptersAdapter.MyViewHolder>() {
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -34,14 +33,14 @@ class ChaptersAdapter(private val chapters: MutableList<Chapter>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val image = chapters[position].image
-        // holder.view.findViewById<TextView>(R.id.chapter_image).setBackgroundResource(imagesMap[image]!!)
-        holder.view.findViewById<TextView>(R.id.chapter_name).text = chapters[position].name
-        // TODO: Send specific information to each chapter with navigation
-        holder.view.findViewById<Button>(R.id.chapter_image).setOnClickListener { view ->
-            // Para mi aca deberiamos pasarle un ID de chapter y que el componente se ocupe de buscar la data del back en el onCreate
-            val bundle = bundleOf("chapterData" to chapters[position])
-            view.findNavController().navigate(R.id.action_homeFragment_to_chapterFragment, bundle)
+        if(!chapters.isNullOrEmpty()) {
+            val image = chapters[position].image
+            holder.view.findViewById<TextView>(R.id.chapter_image).setBackgroundResource(imagesMap[image]!!)
+            holder.view.findViewById<TextView>(R.id.chapter_name).text = chapters[position].name
+            holder.view.findViewById<Button>(R.id.chapter_image).setOnClickListener { view ->
+                val bundle = bundleOf("chapterData" to chapters[position])
+                view.findNavController().navigate(R.id.action_homeFragment_to_chapterFragment, bundle)
+            }
         }
     }
 
@@ -52,5 +51,5 @@ class ChaptersAdapter(private val chapters: MutableList<Chapter>) :
             VIEWTYPE_MOVIE
     }*/
 
-    override fun getItemCount() = chapters.size
+    override fun getItemCount() = if (!chapters.isNullOrEmpty()) chapters.size else 0
 }
