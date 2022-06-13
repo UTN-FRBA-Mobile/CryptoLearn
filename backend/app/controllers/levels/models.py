@@ -80,12 +80,20 @@ Chapter_2 = Chapter(
 
 Level_1 = Level([
     Chapter_1,
+    Chapter_1,
+    Chapter_2,
+])
+Level_2 = Level([
+    Chapter_1,
+    Chapter_2,
+    Chapter_2,
     Chapter_2,
 ])
 
 levels_by_user = {
     "admin1@gmail.com": [
         LevelsByUser(Level_1, User("admin1@gmail.com", ""), "en-curso"),
+        LevelsByUser(Level_2, User("admin1@gmail.com", ""), "en-curso"),
     ],
     "admin2@gmail.com": [
         LevelsByUser(Level_1, User("admin2@gmail.com", ""), "completado"),

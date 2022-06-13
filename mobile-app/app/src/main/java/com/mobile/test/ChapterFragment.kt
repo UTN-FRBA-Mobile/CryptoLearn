@@ -50,9 +50,13 @@ class ChapterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding?.goToQuestion?.setOnClickListener{
+        binding.goToQuestion.setOnClickListener{
             findNavController().navigate(R.id.action_chapterFragment_to_questionFragment)
         }
+
+//        binding.chapterFragmentToolbar.setNavigationOnClickListener {
+//            findNavController().popBackStack()
+//        }
 
         // Set up WebView
         binding.chapterWebView.settings.loadsImagesAutomatically = true
