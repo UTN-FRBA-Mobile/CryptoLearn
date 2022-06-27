@@ -1,17 +1,17 @@
 package com.mobile.test
 
 import android.os.Bundle
-import android.view.Gravity
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.databinding.FragmentQuestionBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
 import com.mobile.test.model.Chapter
+import com.mobile.test.model.Question
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,10 +29,13 @@ private const val ARG_PARAM_CHAPTER_DATA = "chapterData"
 class QuestionFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var chapterData: Chapter
+    private lateinit var currentQuestion: Question
     private var _binding: FragmentQuestionBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private var questionIndex: Int = 0
+    private var questionAnswered: Boolean = false
+    private var selectedAnswer: Int? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,29 +83,81 @@ class QuestionFragment : Fragment() {
         }
 
         binding.questionOptionButton.setOnClickListener {
-            // TODO: validar si la pregunta esta bien
-
-            // Carga los datos de la siguiente pregunta en la view
-            questionIndex++
-            this.showNextQuestion()
+            Log.d("PRINT", "QUESTION ANSWERED: $questionAnswered")
+            if (!questionAnswered) {
+                if (selectedAnswer !== null) {
+                    if (selectedAnswer === chapterData.questions?.get(questionIndex)?.answerIndex) {
+                        // la resp esta bien
+                        checkAnswer(true)
+                    } else {
+                        // la resp esta mal
+                        checkAnswer(false)
+                    }
+                } else {
+                    // no se selecciono, asi que no se hace nada
+                }
+            } else {
+                // Carga los datos de la siguiente pregunta en la view
+                Log.d("PRINT", "NEXT QUESTION")
+                questionIndex++
+                this.showNextQuestion()
+            }
         }
     }
 
     fun showNextQuestion() {
-        if(questionIndex < chapterData.questions!!.count()) {
+        if (questionIndex < chapterData.questions!!.count()) {
             chapterData.questions!![questionIndex].let {
                 binding.questionTitle.text = it.questionTitle
                 binding.questionDescription.text = it.questionDescription
                 binding.questionTitle.text = it.questionTitle
                 binding.questionDescription.text = it.questionDescription
+                currentQuestion = it
+                questionAnswered = false
+                binding.questionOptionButton.text = "CHECK"
 
-                recyclerView.adapter = QuestionOptionsAdapter(it.options)
+                recyclerView.adapter =
+                    QuestionOptionsAdapter(it, OnClickListener { answer ->
+                        var newAnswer =
+                            chapterData.questions!![questionIndex].options.indexOf(answer)
+                        selectedAnswer = newAnswer
+
+                        Log.d("PRINT", "Selected answer 1: $answer, number $selectedAnswer")
+                        changeAnswer(newAnswer)
+                    })
                 recyclerView.adapter!!.notifyDataSetChanged()
             }
         } else {
             // TODO: que pasa si se terminan las preguntas
             findNavController().navigate(R.id.action_questionFragment_to_homeFragment)
         }
+    }
+
+    fun changeAnswer(newAnswer: Int) {
+        var newQuestion = currentQuestion
+        newQuestion.selectedAnswer = newAnswer
+        currentQuestion = newQuestion
+        Log.d("PRINT", "$newQuestion- newAnser:$newAnswer")
+        recyclerView.adapter =
+            QuestionOptionsAdapter(newQuestion, OnClickListener { answer ->
+                Log.d("PRINT", "onClick answer: $answer")
+                var newAnswer =
+                    chapterData.questions!![questionIndex].options.indexOf(answer)
+                selectedAnswer = newAnswer
+                Log.d("PRINT", "Selected answer 2: $answer, number $selectedAnswer")
+                changeAnswer(newAnswer)
+            })
+        recyclerView.adapter!!.notifyDataSetChanged()
+    }
+
+    fun checkAnswer(isCorrect: Boolean) {
+        binding.questionOptionButton.text = "NEXT"
+        var newQuestion = currentQuestion
+        newQuestion.isCorrect = isCorrect
+        currentQuestion = newQuestion
+        questionAnswered = true
+        recyclerView.adapter = QuestionOptionsAdapter(newQuestion, null)
+        recyclerView.adapter!!.notifyDataSetChanged()
     }
 
     companion object {

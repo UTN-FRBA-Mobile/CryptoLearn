@@ -65,9 +65,9 @@ Chapter_1 = Chapter(
     "Capitulo 1",
     "https://www.newscientist.com/definition/bitcoin",
     [
-        Question("Que es el bitcoin?", ["Un gusto de helado", "Una criptomoneda"], 1),
-        Question("Lorem ipsum asd dofnsd", ["agsgdsf", "asdf"], 2),
-        Question("Quasde sdknfiab afjkdfba sfnj?", ["ofoeeoroef", "osoeoeofjeso"], 1)
+        Question("Que es el bitcoin?", ["Un gusto de helado", "Una criptomoneda", "ASDADASD"], 1),
+        Question("Que es etherium?", ["Un noticiero", "Una criptomoneda"], 1),
+        Question("Que es dogecoin?", ["Una raza de perro", "Una criptomoneda"], 1)
     ],
     "chapter_1"
 )
@@ -77,7 +77,7 @@ Chapter_2 = Chapter(
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question("Que es el usdt?", ["Un gusto de helado", "Una criptomoneda"], 1),
-        Question("Que es el etherium?", ["Un gusto de helado", "Una criptomoneda"], 1)
+        Question("Que es etherium?", ["Un gusto de helado", "Una criptomoneda"], 1)
     ],
     "chapter_2"
 )
@@ -86,8 +86,8 @@ Chapter_3 = Chapter(
     "Capitulo 3",
     "https://www.newscientist.com/definition/bitcoin",
     [
-        Question("Lorem Ipsum Lorem Ipsum", ["Un gusto de teclado", "Una silla"], 1),
-        Question("Que es el amor?", ["Una forma de vivir", "La feria de verduras"], 1)
+        Question("Que es el bitcoin?", ["Un modelo de teclado", "Una criptomoneda"], 1),
+        Question("Que es etherium?", ["Un animal", "Una criptomoneda"], 1)
     ],
     "chapter_3"
 )
