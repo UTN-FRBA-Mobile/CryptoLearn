@@ -3,18 +3,24 @@ from typing import List
 
 from app.services.database.user import User
 
+
 class Question:
-    def __init__(self, question: str, options: List[str], answer: int) -> None:
+    def __init__(
+        self, question: str, options: List[str], answer: str, answer_index: int
+    ) -> None:
         self.question = question
         self.options = options
         self.answer = answer
+        self.answer_index = answer_index
 
     def to_json(self):
         return {
             "questionTitle": self.question,
             "options": self.options,
-            "answerIndex": self.answer,
+            "answer": self.answer,
+            "answerIndex": self.answer_index,
         }
+
 
 class Chapter:
     def __init__(
@@ -34,8 +40,9 @@ class Chapter:
             "name": self.name,
             "url": self.url,
             "questions": list(map(lambda x: x.to_json(), self.questions)),
-            "image": self.image
+            "image": self.image,
         }
+
 
 class Level:
     def __init__(self, chapters: List[Chapter]) -> None:
@@ -45,6 +52,7 @@ class Level:
         return {
             "chapters": list(map(lambda x: x.to_json(), self.chapters)),
         }
+
 
 class LevelsByUser:
     def __init__(self, level: Level, user: User, state: str) -> None:
@@ -61,48 +69,85 @@ class LevelsByUser:
         rta["state"] = self.state
         return rta
 
+
 Chapter_1 = Chapter(
     "Capitulo 1",
     "https://www.newscientist.com/definition/bitcoin",
     [
-        Question("Que es el bitcoin?", ["Un gusto de helado", "Una criptomoneda", "ASDADASD"], 1),
-        Question("Que es etherium?", ["Un noticiero", "Una criptomoneda"], 1),
-        Question("Que es dogecoin?", ["Una raza de perro", "Una criptomoneda"], 1)
+        Question(
+            "Que es el bitcoin?",
+            ["Un gusto de helado", "Una criptomoneda", "ASDADASD"],
+            "Una criptomoneda",
+            1,
+        ),
+        Question(
+            "Que es etherium?",
+            ["Un noticiero", "Una criptomoneda"],
+            "Una criptomoneda",
+            1,
+        ),
+        Question(
+            "Que es dogecoin?",
+            ["Una raza de perro", "Una criptomoneda"],
+            "Una criptomoneda",
+            1,
+        ),
     ],
-    "chapter_1"
+    "chapter_1",
 )
 
 Chapter_2 = Chapter(
     "Capitulo 2",
     "https://www.newscientist.com/definition/bitcoin",
     [
-        Question("Que es el usdt?", ["Un gusto de helado", "Una criptomoneda"], 1),
-        Question("Que es etherium?", ["Un gusto de helado", "Una criptomoneda"], 1)
+        Question(
+            "Que es el usdt?",
+            ["Un gusto de helado", "Una criptomoneda"],
+            "Una criptomoneda",
+            1,
+        ),
+        Question(
+            "Que es etherium?",
+            ["Un gusto de helado", "Una criptomoneda"],
+            "Una criptomoneda",
+            1,
+        ),
     ],
-    "chapter_2"
+    "chapter_2",
 )
 
 Chapter_3 = Chapter(
     "Capitulo 3",
     "https://www.newscientist.com/definition/bitcoin",
     [
-        Question("Que es el bitcoin?", ["Un modelo de teclado", "Una criptomoneda"], 1),
-        Question("Que es etherium?", ["Un animal", "Una criptomoneda"], 1)
+        Question(
+            "Que es el bitcoin?",
+            ["Un modelo de teclado", "Una criptomoneda"],
+            "Una criptomoneda",
+            1,
+        ),
+        Question(
+            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda", 1
+        ),
     ],
-    "chapter_3"
+    "chapter_3",
 )
 
-Level_1 = Level([
-    Chapter_1,
-    Chapter_2,
-    Chapter_3,
-])
-Level_2 = Level([
-    Chapter_3,
-    Chapter_2,
-    Chapter_1,
-    Chapter_2,
-])
+Level_1 = Level(
+    [
+        Chapter_1,
+        Chapter_2,
+        Chapter_3,
+    ]
+)
+Level_2 = Level(
+    [
+        Chapter_3,
+        Chapter_2,
+        Chapter_1,
+        Chapter_2,
+    ]
+)
 
 levels_by_user = {
     "admin1@gmail.com": [

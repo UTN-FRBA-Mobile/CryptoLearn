@@ -35,7 +35,8 @@ class QuestionFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var questionIndex: Int = 0
     private var questionAnswered: Boolean = false
-    private var selectedAnswer: Int? = null
+    private var selectedAnswer: Int? = null//TODO juani: sacar
+    private var selectedAnswerString: String? = null//TODO juani: sacar
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,23 +85,23 @@ class QuestionFragment : Fragment() {
 
         binding.questionOptionButton.setOnClickListener {
             Log.d("PRINT", "QUESTION ANSWERED: $questionAnswered")
-            if (!questionAnswered) {
-                if (selectedAnswer !== null) {
-                    if (selectedAnswer === chapterData.questions?.get(questionIndex)?.answerIndex) {
-                        // la resp esta bien
-                        checkAnswer(true)
-                    } else {
-                        // la resp esta mal
-                        checkAnswer(false)
-                    }
-                } else {
-                    // no se selecciono, asi que no se hace nada
-                }
-            } else {
+            Log.d("PRINT", "ANSWER: $selectedAnswerString")
+            if (binding.questionOptionButton.text == "NEXT") {
                 // Carga los datos de la siguiente pregunta en la view
                 Log.d("PRINT", "NEXT QUESTION")
                 questionIndex++
                 this.showNextQuestion()
+            }
+            if (selectedAnswerString !== null) {
+                if (selectedAnswerString!!.lowercase() == chapterData.questions?.get(questionIndex)?.answer?.lowercase()) {
+                    // la resp esta bien
+                    checkAnswer(true)
+                } else {
+                    // la resp esta mal
+                    checkAnswer(false)
+                }
+            } else {
+                // no se selecciono, asi que no se hace nada
             }
         }
     }
@@ -121,6 +122,7 @@ class QuestionFragment : Fragment() {
                         var newAnswer =
                             chapterData.questions!![questionIndex].options.indexOf(answer)
                         selectedAnswer = newAnswer
+                        selectedAnswerString = answer
 
                         Log.d("PRINT", "Selected answer 1: $answer, number $selectedAnswer")
                         changeAnswer(newAnswer)
@@ -144,6 +146,7 @@ class QuestionFragment : Fragment() {
                 var newAnswer =
                     chapterData.questions!![questionIndex].options.indexOf(answer)
                 selectedAnswer = newAnswer
+                selectedAnswerString = answer
                 Log.d("PRINT", "Selected answer 2: $answer, number $selectedAnswer")
                 changeAnswer(newAnswer)
             })
@@ -151,12 +154,25 @@ class QuestionFragment : Fragment() {
     }
 
     fun checkAnswer(isCorrect: Boolean) {
-        binding.questionOptionButton.text = "NEXT"
+        var listenerr: OnClickListener? = null
         var newQuestion = currentQuestion
         newQuestion.isCorrect = isCorrect
         currentQuestion = newQuestion
         questionAnswered = true
-        recyclerView.adapter = QuestionOptionsAdapter(newQuestion, null)
+        if (isCorrect){
+            binding.questionOptionButton.text = "NEXT"
+        } else {
+            listenerr = OnClickListener { answer ->
+                Log.d("PRINT", "onClick answer: $answer")
+                var newAnswer =
+                    chapterData.questions!![questionIndex].options.indexOf(answer)
+                selectedAnswer = newAnswer
+                selectedAnswerString = answer
+                Log.d("PRINT", "Selected answer 2: $answer, number $selectedAnswer")
+                changeAnswer(newAnswer)
+            }
+        }
+        recyclerView.adapter = QuestionOptionsAdapter(newQuestion, listenerr)
         recyclerView.adapter!!.notifyDataSetChanged()
     }
 
