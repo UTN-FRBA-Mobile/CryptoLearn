@@ -91,17 +91,18 @@ class QuestionFragment : Fragment() {
                 Log.d("PRINT", "NEXT QUESTION")
                 questionIndex++
                 this.showNextQuestion()
-            }
-            if (selectedAnswerString !== null) {
-                if (selectedAnswerString!!.lowercase() == chapterData.questions?.get(questionIndex)?.answer?.lowercase()) {
-                    // la resp esta bien
-                    checkAnswer(true)
-                } else {
-                    // la resp esta mal
-                    checkAnswer(false)
-                }
             } else {
-                // no se selecciono, asi que no se hace nada
+                if (selectedAnswerString !== null) {
+                    if (selectedAnswerString!!.lowercase() == chapterData.questions?.get(questionIndex)?.answer?.lowercase()) {
+                        // la resp esta bien
+                        checkAnswer(true)
+                    } else {
+                        // la resp esta mal
+                        checkAnswer(false)
+                    }
+                } else {
+                    // no se selecciono, asi que no se hace nada
+                }
             }
         }
     }
