@@ -1,24 +1,25 @@
-import json
+import random
 from typing import List
 
 from app.services.database.user import User
 
 
 class Question:
-    def __init__(
-        self, question: str, options: List[str], answer: str, answer_index: int
-    ) -> None:
+    def __init__(self, question: str, options: List[str], answer: str) -> None:
         self.question = question
         self.options = options
         self.answer = answer
-        self.answer_index = answer_index
+
+    def get_anser_index(self) -> int:
+        return self.options.index(self.answer)
 
     def to_json(self):
+        random.shuffle(self.options)
         return {
             "questionTitle": self.question,
             "options": self.options,
             "answer": self.answer,
-            "answerIndex": self.answer_index,
+            "answerIndex": self.get_anser_index(),
         }
 
 
@@ -36,6 +37,7 @@ class Chapter:
         self.image = image
 
     def to_json(self):
+        random.shuffle(self.questions)
         return {
             "name": self.name,
             "url": self.url,
@@ -78,19 +80,16 @@ Chapter_1 = Chapter(
             "Que es el bitcoin?",
             ["Un gusto de helado", "Una criptomoneda", "ASDADASD"],
             "Una criptomoneda",
-            1,
         ),
         Question(
             "Que es etherium?",
             ["Un noticiero", "Una criptomoneda"],
             "Una criptomoneda",
-            1,
         ),
         Question(
             "Que es dogecoin?",
             ["Una raza de perro", "Una criptomoneda"],
             "Una criptomoneda",
-            1,
         ),
     ],
     "chapter_1",
@@ -104,13 +103,11 @@ Chapter_2 = Chapter(
             "Que es el usdt?",
             ["Un gusto de helado", "Una criptomoneda"],
             "Una criptomoneda",
-            1,
         ),
         Question(
             "Que es etherium?",
             ["Un gusto de helado", "Una criptomoneda"],
             "Una criptomoneda",
-            1,
         ),
     ],
     "chapter_2",
@@ -124,10 +121,11 @@ Chapter_3 = Chapter(
             "Que es el bitcoin?",
             ["Un modelo de teclado", "Una criptomoneda"],
             "Una criptomoneda",
-            1,
         ),
         Question(
-            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda", 1
+            "Que es etherium?",
+            ["Un animal", "Una criptomoneda"],
+            "Una criptomoneda",
         ),
     ],
     "chapter_3",

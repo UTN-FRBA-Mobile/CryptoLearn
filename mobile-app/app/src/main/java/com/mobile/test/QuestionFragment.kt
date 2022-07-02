@@ -35,8 +35,8 @@ class QuestionFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var questionIndex: Int = 0
     private var questionAnswered: Boolean = false
-    private var selectedAnswer: Int? = null//TODO juani: sacar
-    private var selectedAnswerString: String? = null//TODO juani: sacar
+    private var selectedAnswer: Int? = null
+    private var selectedAnswerString: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
