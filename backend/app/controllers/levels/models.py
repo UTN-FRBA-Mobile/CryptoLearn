@@ -14,7 +14,6 @@ class Question:
         return self.options.index(self.answer)
 
     def to_json(self):
-        random.shuffle(self.options)
         return {
             "questionTitle": self.question,
             "options": self.options,
@@ -83,7 +82,7 @@ Chapter_1 = Chapter(
         ),
         Question(
             "Que es etherium?",
-            ["Un noticiero", "Una criptomoneda"],
+            ["Una criptomoneda", "Un noticiero"],
             "Una criptomoneda",
         ),
         Question(
