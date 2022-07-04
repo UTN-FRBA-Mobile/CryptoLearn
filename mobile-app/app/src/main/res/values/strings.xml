@@ -5,6 +5,8 @@
     <string name="signup"><u>create una cuenta</u>.</string>
     <string name="email">Email</string>
     <string name="password">Contraseña</string>
+    <string name="fill_fields">Debés completar todos los campos</string>
+    <string name="account_created">Cuenta creada exitosamente!</string>
     <string name="login">Iniciar Sesión</string>
     <string name="forgot_password"><u>Olvidé mi contraseña</u></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
