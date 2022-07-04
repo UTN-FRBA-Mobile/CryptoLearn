@@ -1,12 +1,13 @@
 package com.mobile.test
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -77,6 +78,8 @@ class LoginFragment : Fragment() {
                             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                                 if (response.isSuccessful) {
                                     sessionManager.saveAuthToken(response.body()?.token!!)
+                                    var imm: InputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                                    imm.hideSoftInputFromWindow(view.windowToken,0)
                                     val action = R.id.action_loginFragment_to_homeFragment
                                     findNavController().navigate(action)
                                 } else {
