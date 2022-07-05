@@ -16,6 +16,12 @@ interface Service {
         @Body signupRequest: SignupRequest
     ): Call<String>
 
+    @Headers("Content-Type: application/json",)
+    @POST("reset_password")
+    fun reset_password(
+        @Body resetPasswordRequest: ResetPasswordRequest
+    ): Call<String>
+
     @Headers("Content-Type: application/json")
     @GET("levels")
     fun getLevels(@Header("Authorization") token: String): Call<LevelsResponse>

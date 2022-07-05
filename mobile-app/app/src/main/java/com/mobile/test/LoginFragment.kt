@@ -64,35 +64,26 @@ class LoginFragment : Fragment() {
             val email = binding.email.text.toString().trim()
             val password = binding.password.text.toString().trim()
 
-            when{
-                email.isEmpty() or password.isEmpty() -> {
-                    val toast = Toast.makeText(context, "Llená los  campos mi rey", Toast.LENGTH_LONG)
-                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 190);
-                    toast.show()
-                }
-                else ->{
-                    sessionManager = SessionManager.getInstance(requireContext())
-                    RetrofitClient.service.login(LoginRequest(email, password))
-                        .enqueue(object: Callback<LoginResponse> {
-                            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                                if (response.isSuccessful) {
-                                    sessionManager.saveAuthToken(response.body()?.token!!)
-                                    val action = R.id.action_loginFragment_to_homeFragment
-                                    findNavController().navigate(action)
-                                } else {
-                                    val toast = Toast.makeText(context, resources.getString(R.string.bad_login), Toast.LENGTH_LONG)
-                                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
-                                    toast.show()
-                                }
-                            }
-                            override fun onFailure(call: Call<LoginResponse>, error: Throwable) {
-                                val toast = Toast.makeText(context, resources.getString(R.string.error_occurred), Toast.LENGTH_LONG)
-                                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
-                                toast.show()
-                            }
-                        })
-                }
-            }
+            sessionManager = SessionManager.getInstance(requireContext())
+            RetrofitClient.service.login(LoginRequest(email, password))
+                .enqueue(object: Callback<LoginResponse> {
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                        if (response.isSuccessful) {
+                            sessionManager.saveAuthToken(response.body()?.token!!)
+                            val action = R.id.action_loginFragment_to_homeFragment
+                            findNavController().navigate(action)
+                        } else {
+                            val toast = Toast.makeText(context, resources.getString(R.string.bad_login), Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                            toast.show()
+                        }
+                    }
+                    override fun onFailure(call: Call<LoginResponse>, error: Throwable) {
+                        val toast = Toast.makeText(context, resources.getString(R.string.error_occurred), Toast.LENGTH_LONG)
+                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                        toast.show()
+                    }
+                })
         }
 
         binding.email.doAfterTextChanged {

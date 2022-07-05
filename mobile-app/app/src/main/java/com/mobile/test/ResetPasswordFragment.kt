@@ -10,7 +10,11 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
+import com.mobile.test.api.*
 import com.mobile.test.databinding.FragmentResetPasswordBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +32,7 @@ class ResetPasswordFragment : Fragment() {
     private var param2: String? = null
     private var _binding: FragmentResetPasswordBinding? = null
     private val binding get() = _binding!!
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +60,23 @@ class ResetPasswordFragment : Fragment() {
             val email = binding.email.text.toString()
 
             if (!email.isEmpty()) {
+                sessionManager = SessionManager.getInstance(requireContext())
+                RetrofitClient.service.reset_password(ResetPasswordRequest(email))
+                    .enqueue(object: Callback<String> {
+                        override fun onResponse(call: Call<String>, response: Response<String>) {
+                            val toast = Toast.makeText(context, "Si existe una cuenta registrada con $email te enviaremos un email.", Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                            toast.show()
+                            val bundle = bundleOf("Email" to email)
+                            val action = R.id.action_resetPasswordFragment_to_loginFragment
+                        }
+                        override fun onFailure(call: Call<String>, error: Throwable) {
+                            val toast = Toast.makeText(context, resources.getString(R.string.error_occurred), Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                            toast.show()
+                        }
+                    })
+
                 val toast = Toast.makeText(context, "Te hemos enviado un link de recuperación a $email", Toast.LENGTH_LONG)
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
                 toast.show()

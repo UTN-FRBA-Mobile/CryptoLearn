@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.api.*
 import com.mobile.test.databinding.FragmentLoginBinding
@@ -51,6 +52,9 @@ class signupFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        binding.signUpButton.isEnabled = false
+
         _binding?.login?.setOnClickListener{
             findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
         }
@@ -81,13 +85,7 @@ class signupFragment : Fragment() {
                                     val action = R.id.action_signupFragment_to_loginFragment
                                     findNavController().navigate(action)
                                 } else {
-                                    val toast = Toast.makeText(
-                                        context,
-                                        resources.getString(R.string.error_occurred),
-                                        Toast.LENGTH_LONG
-                                    )
-                                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
-                                    toast.show()
+                                    showErrorToast()
                                 }
                             }
 
@@ -95,43 +93,63 @@ class signupFragment : Fragment() {
                                 call: Call<String>,
                                 error: Throwable
                             ) {
-                                val toast = Toast.makeText(
-                                    context,
-                                    resources.getString(R.string.error_occurred),
-                                    Toast.LENGTH_LONG
-                                )
-                                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
-                                toast.show()
+                                showErrorToast()
                             }
                         })
                 }
             }
         }
+
+        binding.name.doAfterTextChanged {
+            checkRequiredFields()
+        }
+
+        binding.lastName.doAfterTextChanged {
+            checkRequiredFields()
+        }
+
+        binding.email.doAfterTextChanged {
+            checkRequiredFields()
+        }
+
+        binding.password.doAfterTextChanged {
+            checkRequiredFields()
+        }
+
+        binding.confirmPassword.doAfterTextChanged {
+            checkRequiredFields()
+        }
+    }
+
+    private fun showErrorToast() {
+        val toast = Toast.makeText(
+            context,
+            resources.getString(R.string.error_occurred),
+            Toast.LENGTH_LONG
+        )
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+        toast.show()
     }
 
     private fun validateFields(): Boolean {
-        val name = _binding!!.name.text.toString()
-        val lastName = binding.lastName.text.toString()
-        val email = binding.email.text.toString()
         val password = binding.password.text.toString()
         val confirmPassword = binding.confirmPassword.text.toString()
 
-        if (name.isEmpty() or lastName.isEmpty() or email.isEmpty() or password.isEmpty() or confirmPassword.isEmpty()) {
+        if (confirmPassword != password) {
             val toast =
-                Toast.makeText(context, getString(R.string.fill_fields), Toast.LENGTH_LONG)
+                Toast.makeText(context, getString(R.string.passwords_dont_match), Toast.LENGTH_LONG)
             toast.setGravity(Gravity.CENTER_VERTICAL, 0, 190);
             toast.show()
             return false
-        } else {
-            if (confirmPassword != password) {
-                val toast =
-                    Toast.makeText(context, getString(R.string.fill_fields), Toast.LENGTH_LONG)
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 190);
-                toast.show()
-                return false
-            }
         }
         return true
+    }
+
+    private fun checkRequiredFields() {
+        binding.signUpButton.isEnabled =
+            binding.email.text.toString().isNotEmpty() && binding.password.text.toString().isNotEmpty()
+                    && binding.name.text.toString().isNotEmpty() && binding.lastName.text.toString().isNotEmpty()
+                    && binding.confirmPassword.text.toString().isNotEmpty()
     }
 
     companion object {
