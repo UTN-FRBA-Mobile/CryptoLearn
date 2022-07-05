@@ -2,21 +2,26 @@ package com.mobile.test
 
 import android.app.AlertDialog
 import android.content.Context
+import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.mobile.test.api.RetrofitClient
 import com.mobile.test.api.*
 import com.mobile.test.biometrics.*
 import com.mobile.test.databinding.FragmentLoginBinding
+import com.mobile.test.api.LoginRequest
+import com.mobile.test.api.LoginResponse
+import com.mobile.test.api.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -97,8 +102,17 @@ class LoginFragment : Fragment() {
                         .enqueue(object: Callback<LoginResponse> {
                             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                                 if (response.isSuccessful) {
+                                    var imm: InputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                                    imm.hideSoftInputFromWindow(view.windowToken,0)
                                     SessionManager.getInstance(requireContext()).saveAuthToken(response.body()?.token!!)
-                                    showActivateBiometricsDialog()
+                                    val canAuthenticate = BiometricManager.from(requireContext()).canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)
+                                    if (canAuthenticate == BiometricManager.BIOMETRIC_SUCCESS) {
+                                        if (ciphertextWrapper == null) {
+                                            showActivateBiometricsDialog()
+                                        }
+                                    } else {
+                                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                                    }
                                 } else {
                                     val toast = Toast.makeText(context, resources.getString(R.string.bad_login), Toast.LENGTH_LONG)
                                     toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
@@ -210,6 +224,8 @@ class LoginFragment : Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
          * @return A new instance of fragment LoginFragment.
          */
         // TODO: Rename and change types and number of parameters
