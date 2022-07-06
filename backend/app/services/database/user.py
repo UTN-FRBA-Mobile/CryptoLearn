@@ -15,7 +15,7 @@ class User(BaseModel):
         return 1
 
     def exist(self):
-        return self.email in users
+    	return self.email in users
 
 
 users = ["admin1@gmail.com", "admin2@gmail.com"]

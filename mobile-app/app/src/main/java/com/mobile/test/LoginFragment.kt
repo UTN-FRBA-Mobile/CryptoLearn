@@ -91,41 +91,33 @@ class LoginFragment : Fragment() {
             val email = binding.email.text.toString().trim()
             val password = binding.password.text.toString().trim()
 
-            when{
-                email.isEmpty() or password.isEmpty() -> {
-                    val toast = Toast.makeText(context, "Llená los  campos mi rey", Toast.LENGTH_LONG)
-                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 190);
-                    toast.show()
-                }
-                else ->{
-                    RetrofitClient.service.login(LoginRequest(email, password))
-                        .enqueue(object: Callback<LoginResponse> {
-                            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                                if (response.isSuccessful) {
-                                    var imm: InputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-                                    imm.hideSoftInputFromWindow(view.windowToken,0)
-                                    SessionManager.getInstance(requireContext()).saveAuthToken(response.body()?.token!!)
-                                    val canAuthenticate = BiometricManager.from(requireContext()).canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)
-                                    if (canAuthenticate == BiometricManager.BIOMETRIC_SUCCESS) {
-                                        if (ciphertextWrapper == null) {
-                                            showActivateBiometricsDialog()
-                                        }
-                                    } else {
-                                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                                    }
-                                } else {
-                                    val toast = Toast.makeText(context, resources.getString(R.string.bad_login), Toast.LENGTH_LONG)
-                                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
-                                    toast.show()
+            RetrofitClient.service.login(LoginRequest(email, password))
+                .enqueue(object: Callback<LoginResponse> {
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                        if (response.isSuccessful) {
+                            var imm: InputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                            imm.hideSoftInputFromWindow(view.windowToken,0)
+                            SessionManager.getInstance(requireContext()).saveAuthToken(response.body()?.token!!)
+                            val canAuthenticate = BiometricManager.from(requireContext()).canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)
+                            if (canAuthenticate == BiometricManager.BIOMETRIC_SUCCESS) {
+                                if (ciphertextWrapper == null) {
+                                    showActivateBiometricsDialog()
                                 }
+                            } else {
+                                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                             }
-                            override fun onFailure(call: Call<LoginResponse>, error: Throwable) {
-                                val toast = Toast.makeText(context, resources.getString(R.string.error_occurred), Toast.LENGTH_LONG)
-                                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
-                                toast.show()
-                            }
-                        })
-                }
+                        } else {
+                            val toast = Toast.makeText(context, resources.getString(R.string.bad_login), Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                            toast.show()
+                        }
+                    }
+                    override fun onFailure(call: Call<LoginResponse>, error: Throwable) {
+                        val toast = Toast.makeText(context, resources.getString(R.string.error_occurred), Toast.LENGTH_LONG)
+                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+                        toast.show()
+                    }
+                })
             }
         }
 

@@ -43,7 +43,7 @@
                 android:textSize="@dimen/text_size" />
 
             <TextView
-                android:id="@+id/signUp"
+                android:id="@+id/login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/text_margin_top"
@@ -154,7 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_margin_top"
-            android:backgroundTint="@color/text_disabled"
+            android:backgroundTint="@drawable/button_state_colors"
             android:hint="@string/create_account"
             android:padding="@dimen/button_padding"
             android:stateListAnimator="@null"
