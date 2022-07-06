@@ -64,7 +64,7 @@ class ResetPasswordFragment : Fragment() {
                 RetrofitClient.service.reset_password(ResetPasswordRequest(email))
                     .enqueue(object: Callback<String> {
                         override fun onResponse(call: Call<String>, response: Response<String>) {
-                            val toast = Toast.makeText(context, "Si existe una cuenta registrada con $email te enviaremos un email.", Toast.LENGTH_LONG)
+                            val toast = Toast.makeText(context, getString(R.string.recovery_email_sent, email), Toast.LENGTH_LONG)
                             toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
                             toast.show()
                             val bundle = bundleOf("Email" to email)
@@ -76,13 +76,6 @@ class ResetPasswordFragment : Fragment() {
                             toast.show()
                         }
                     })
-
-                val toast = Toast.makeText(context, "Te hemos enviado un link de recuperación a $email", Toast.LENGTH_LONG)
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
-                toast.show()
-                val bundle = bundleOf("Email" to email)
-                val action = R.id.action_resetPasswordFragment_to_loginFragment
-                findNavController().navigate(action, bundle)
             }
         }
 
