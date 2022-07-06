@@ -1,8 +1,8 @@
 package com.mobile.test
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.app.Activity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -15,13 +15,9 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.mobile.test.api.RetrofitClient
 import com.mobile.test.api.*
 import com.mobile.test.biometrics.*
 import com.mobile.test.databinding.FragmentLoginBinding
-import com.mobile.test.api.LoginRequest
-import com.mobile.test.api.LoginResponse
-import com.mobile.test.api.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -118,7 +114,6 @@ class LoginFragment : Fragment() {
                         toast.show()
                     }
                 })
-            }
         }
 
         binding.email.doAfterTextChanged {
