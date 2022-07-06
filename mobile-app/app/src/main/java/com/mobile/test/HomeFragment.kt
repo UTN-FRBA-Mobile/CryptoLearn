@@ -7,14 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.test.api.*
 import com.mobile.test.databinding.FragmentHomeBinding
-import com.mobile.test.model.Chapter
 import com.mobile.test.model.Level
-import com.mobile.test.model.Question
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
