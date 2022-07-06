@@ -30,12 +30,14 @@ class QuestionFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var chapterData: Chapter
     private lateinit var currentQuestion: Question
+    private var badQuestion: MutableList<Question> = mutableListOf()
     private var _binding: FragmentQuestionBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private var questionIndex: Int = 0
     private var questionAnswered: Boolean = false
     private var selectedAnswer: Int? = null
+    private var selectedAnswerString: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,6 +79,7 @@ class QuestionFragment : Fragment() {
 
         // Carga los datos de la primer pregunta en la view
         this.showNextQuestion()
+        chapterData.questions?.let { badQuestion.addAll(it) }
 
         binding.questionFragmentToolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
@@ -84,23 +87,43 @@ class QuestionFragment : Fragment() {
 
         binding.questionOptionButton.setOnClickListener {
             Log.d("PRINT", "QUESTION ANSWERED: $questionAnswered")
+            Log.d("PRINT", "rta: $selectedAnswer")
             if (!questionAnswered) {
                 if (selectedAnswer !== null) {
-                    if (selectedAnswer === chapterData.questions?.get(questionIndex)?.answerIndex) {
-                        // la resp esta bien
-                        checkAnswer(true)
+                    if (questionIndex < chapterData.questions?.size!!){
+                        Log.d("PRINT", "correct: ${chapterData.questions?.get(questionIndex)?.answer}")
+                        Log.d("PRINT", "rta: $selectedAnswerString")
+                        if (selectedAnswerString.equals(chapterData.questions?.get(questionIndex)?.answer, ignoreCase = true)) {
+                            // la resp esta bien
+                            checkAnswer(true)
+                        } else {
+                            // la resp esta mal
+                            checkAnswer(false)
+                            badQuestion.add(currentQuestion)
+                        }
                     } else {
-                        // la resp esta mal
-                        checkAnswer(false)
+                        if (selectedAnswerString.equals(badQuestion?.get(questionIndex)?.answer, ignoreCase = true)) {
+                            // la resp esta bien
+                            checkAnswer(true)
+                        } else {
+                            // la resp esta mal
+                            checkAnswer(false)
+                            badQuestion.add(currentQuestion)
+                        }
                     }
+
                 } else {
                     // no se selecciono, asi que no se hace nada
                 }
             } else {
                 // Carga los datos de la siguiente pregunta en la view
-                Log.d("PRINT", "NEXT QUESTION")
-                questionIndex++
-                this.showNextQuestion()
+                if (binding.questionOptionButton.text.equals("NEXT")) {
+                    Log.d("PRINT", "NEXT QUESTION")
+                    selectedAnswer = null
+                    selectedAnswerString = ""
+                    questionIndex++
+                    this.showNextQuestion()
+                }
             }
         }
     }
@@ -121,6 +144,7 @@ class QuestionFragment : Fragment() {
                         var newAnswer =
                             chapterData.questions!![questionIndex].options.indexOf(answer)
                         selectedAnswer = newAnswer
+                        selectedAnswerString = answer
 
                         Log.d("PRINT", "Selected answer 1: $answer, number $selectedAnswer")
                         changeAnswer(newAnswer)
@@ -129,7 +153,31 @@ class QuestionFragment : Fragment() {
             }
         } else {
             // TODO: que pasa si se terminan las preguntas
-            findNavController().navigate(R.id.action_questionFragment_to_homeFragment)
+            if (questionIndex < badQuestion!!.count()) {
+                badQuestion!![questionIndex].let {
+                    binding.questionTitle.text = it.questionTitle
+                    binding.questionDescription.text = it.questionDescription
+                    binding.questionTitle.text = it.questionTitle
+                    binding.questionDescription.text = it.questionDescription
+                    currentQuestion = it
+                    questionAnswered = false
+                    binding.questionOptionButton.text = "CHECK"
+
+                    recyclerView.adapter =
+                        QuestionOptionsAdapter(it, OnClickListener { answer ->
+                            var newAnswer =
+                                badQuestion!![questionIndex].options.indexOf(answer)
+                            selectedAnswer = newAnswer
+                            selectedAnswerString = answer
+
+                            Log.d("PRINT", "Selected answer 1: $answer, number $selectedAnswer")
+                            changeAnswer(newAnswer)
+                        })
+                    recyclerView.adapter!!.notifyDataSetChanged()
+                }
+            } else {
+                findNavController().navigate(R.id.action_questionFragment_to_homeFragment)
+            }
         }
     }
 
@@ -144,6 +192,7 @@ class QuestionFragment : Fragment() {
                 var newAnswer =
                     chapterData.questions!![questionIndex].options.indexOf(answer)
                 selectedAnswer = newAnswer
+                selectedAnswerString = answer
                 Log.d("PRINT", "Selected answer 2: $answer, number $selectedAnswer")
                 changeAnswer(newAnswer)
             })

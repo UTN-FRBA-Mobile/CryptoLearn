@@ -60,9 +60,15 @@ class HomeFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         levels = response.body()?.response!!
+                        levels!!.forEach { level ->
+                            level.chapters.forEach{ chapter ->
+                                chapter.questions?.forEach { question ->
+                                    question.options.shuffle()
+                                }
+                        }
                         recyclerView.adapter = LevelsAdapter(levels)
                         recyclerView.adapter!!.notifyDataSetChanged()
-                    } else {
+                    }} else {
                         val toast = Toast.makeText(
                             context,
                             resources.getString(R.string.bad_get_levels),

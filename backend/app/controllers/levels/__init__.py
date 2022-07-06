@@ -1,9 +1,7 @@
-from flask import Response, jsonify, render_template
+from flask import jsonify
 from flask_smorest import Blueprint
 from flask.views import MethodView
-from app.controllers.levels.models import (
-    LevelsByUser
-)
+from app.controllers.levels.models import LevelsByUser
 import flask_jwt_extended as flask_jwt
 
 blp = Blueprint("levels", "levels", description="Sign up route", url_prefix="/levels")
@@ -26,7 +24,6 @@ class LevelsResource(MethodView):
     )
     def get():
         email = flask_jwt.get_jwt_identity()
-        print(flask_jwt.get_jwt_identity())
         levels = LevelsByUser.get_levels_by_user(email)
         response = list(map(lambda x: x.to_json(), levels))
         return jsonify(response=response), 200
