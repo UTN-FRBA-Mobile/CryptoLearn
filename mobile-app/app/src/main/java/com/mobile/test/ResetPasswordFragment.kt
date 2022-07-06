@@ -67,8 +67,7 @@ class ResetPasswordFragment : Fragment() {
                             val toast = Toast.makeText(context, getString(R.string.recovery_email_sent, email), Toast.LENGTH_LONG)
                             toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
                             toast.show()
-                            val bundle = bundleOf("Email" to email)
-                            val action = R.id.action_resetPasswordFragment_to_loginFragment
+                            findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
                         }
                         override fun onFailure(call: Call<String>, error: Throwable) {
                             val toast = Toast.makeText(context, resources.getString(R.string.error_occurred), Toast.LENGTH_LONG)
