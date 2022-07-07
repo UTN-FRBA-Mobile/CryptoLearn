@@ -1,16 +1,20 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">CryptoLearn</string>
     <string name="welcome">¡Bienvenido/a!</string>
     <string name="login_description">Iniciá sesión o&#160;</string>
     <string name="signup"><u>create una cuenta</u>.</string>
     <string name="email">Email</string>
     <string name="password">Contraseña</string>
-    <string name="login">Iniciar Sesión</string>
+    <string name="fill_fields">Debés completar todos los campos</string>
+    <string name="passwords_dont_match">Las contraseñas no coinciden</string>
+    <string name="account_created">Cuenta creada exitosamente!</string>
+    <string name="login">Iniciar sesión</string>
     <string name="forgot_password"><u>Olvidé mi contraseña</u></string>
+    <string name="recovery_email_sent"><u>Si existe una cuenta registrada con %1$s, te enviaremos un email</u></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="signup_description">Ingresá tus datos a continuación o&#160;</string>
     <string name="login_action"><u>iniciá sesión</u></string>
-    <string name="create_account">Create una cuenta pa</string>
+    <string name="create_account">Registro</string>
     <string name="last_name">Apellido</string>
     <string name="name">Nombre</string>
     <string name="confirm_password">Confirmar constraseña</string>
@@ -21,4 +25,11 @@
     <string name="bad_login">El email o la contraseña son incorrectos</string>
     <string name="checkButton">CHECK</string>
     <string name="bad_get_levels">Hubo un error al cargar los niveles</string>
+
+    <string name="prompt_info_title">CryptoLearn</string>
+    <string name="prompt_info_subtitle">Autenticación biométrica</string>
+    <string name="prompt_info_description">Por favor, autenticate para iniciar sesión</string>
+    <string name="prompt_info_use_app_password">Cancelar</string>
+
+    <string name="secret_key_name">biometric_encryption_key</string>
 </resources>
