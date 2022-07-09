@@ -1,7 +1,7 @@
 from flask import jsonify
 from flask_smorest import Blueprint
 from flask.views import MethodView
-from app.controllers.levels.models import State, levels_by_user, update_question_state
+from app.controllers.levels.models import State, levels_by_user, update_chapter_state
 import flask_jwt_extended as flask_jwt
 
 blp = Blueprint("levels", "levels", description="Sign up route", url_prefix="/levels")
@@ -29,17 +29,16 @@ class LevelsResource(MethodView):
         return jsonify(response=response), 200
 
 
-@blp.route("/<level_index>/<chapter_index>/<question_index>")
+@blp.route("/<level_index>/<chapter_index>")
 class LevelsUpdateResource(MethodView):
     @flask_jwt.jwt_required()
     @blp.arguments(State)
-    def post(self, body, level_index, chapter_index, question_index):
+    def post(self, body, level_index, chapter_index):
         email = flask_jwt.get_jwt_identity()
-        update_question_state(
+        update_chapter_state(
             email,
             int(level_index),
             int(chapter_index),
-            int(question_index),
-            body["state"],
+            body["state"]
         )
         return "", 200
