@@ -25,4 +25,13 @@ interface Service {
     @Headers("Content-Type: application/json")
     @GET("levels")
     fun getLevels(@Header("Authorization") token: String): Call<LevelsResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("levels/{level_index}/{chapter_index}")
+    fun updateChapterStatus(
+        @Header("Authorization") token: String,
+        @Path("level_index") level_index:  Int,
+        @Path("chapter_index") chapter_index:  Int,
+        @Body updateChapterStatusRequest: UpdateChapterStatusRequest
+    ): Call<String>
 }
