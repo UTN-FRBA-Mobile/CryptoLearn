@@ -228,24 +228,13 @@ class QuestionFragment : Fragment() {
                     call: Call<String>,
                     response: Response<String>
                 ) {
-                    if (response.isSuccessful) {
-                        val toast = Toast.makeText(
-                            context,
-                            resources.getString(R.string.account_created),
-                            Toast.LENGTH_LONG
-                        )
-                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
-                        toast.show()
-                        val action = R.id.action_signupFragment_to_loginFragment
-                        findNavController().navigate(action)
-                    } else {
-                    }
+                    //TODO success message
                 }
-
                 override fun onFailure(
                     call: Call<String>,
                     error: Throwable
                 ) {
+                    //TODO error message
                 }
             })
     }
