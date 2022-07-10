@@ -4,9 +4,7 @@ import marshmallow
 
 
 class Question:
-    def __init__(
-        self, question: str, options: List[str], answer: str
-    ) -> None:
+    def __init__(self, question: str, options: List[str], answer: str) -> None:
         self.question = question
         self.options = options
         self.answer = answer
@@ -34,7 +32,7 @@ class Chapter:
         self.state = state
 
     def is_done(self):
-        return self.state == 'done'
+        return self.state == "done"
 
     def to_json(self):
         # random.shuffle(self.questions)
@@ -43,7 +41,7 @@ class Chapter:
             "url": self.url,
             "questions": list(map(lambda x: x.to_json(), self.questions)),
             "image": self.image,
-            "state": self.state
+            "state": self.state,
         }
 
 
@@ -61,122 +59,112 @@ class Level:
 
 
 Chapter_1 = Chapter(
-    "Capitulo 1",
+    "Capítulo 1",
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
             "Que es el bitcoin?",
             ["Un gusto de helado", "Una criptomoneda", "ASDADASD"],
-            "Una criptomoneda"
+            "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?",
-            ["Una criptomoneda", "Un noticiero"],
-            "Una criptomoneda"
+            "Que es etherium?", ["Una criptomoneda", "Un noticiero"], "Una criptomoneda"
         ),
         Question(
             "Que es dogecoin?",
             ["Una raza de perro", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Una criptomoneda",
         ),
     ],
     "chapter_1",
-    "in-progress"
+    "in-progress",
 )
 
 Chapter_2 = Chapter(
-    "Capitulo 2",
+    "Capítulo 2",
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
             "Que es el usdt?",
             ["Un gusto de helado", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Una criptomoneda",
         ),
         Question(
             "Que es etherium?",
             ["Un gusto de helado", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Una criptomoneda",
         ),
     ],
     "chapter_2",
-    "in-progress"
+    "in-progress",
 )
 
 Chapter_3 = Chapter(
-    "Capitulo 3",
+    "Capítulo 3",
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
             "Que es el bitcoin?",
             ["Un modelo de teclado", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?",
-            ["Un animal", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
         ),
     ],
     "chapter_3",
-    "in-progress"
+    "in-progress",
 )
 
 Chapter_4 = Chapter(
-    "Capitulo 4",
+    "Capítulo 4",
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
             "Que es el bitcoin?",
             ["Un modelo de teclado", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?",
-            ["Un animal", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
         ),
     ],
     "chapter_2",
-    "block"
+    "block",
 )
 
 Chapter_5 = Chapter(
-    "Capitulo 5",
+    "Capítulo 5",
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
             "Que es el bitcoin?",
             ["Un modelo de teclado", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?",
-            ["Un animal", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
         ),
     ],
     "chapter_3",
-    "block"
+    "block",
 )
 
 Chapter_6 = Chapter(
-    "Capitulo 6",
+    "Capítulo 6",
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
             "Que es el bitcoin?",
             ["Un modelo de teclado", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?",
-            ["Un animal", "Una criptomoneda"],
-            "Una criptomoneda"
+            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
         ),
     ],
     "chapter_1",
-    "block"
+    "block",
 )
 
 Level_1 = Level(
@@ -203,12 +191,7 @@ def enable_next_level(email, level_index):
             pass
 
 
-def update_chapter_state(
-    email: str,
-    level_index: int,
-    chapter_index: int,
-    state: str
-):
+def update_chapter_state(email: str, level_index: int, chapter_index: int, state: str):
     assert state == "done" or state == "in-progress" or state == "block"
     levels_by_user[email][level_index].chapters[chapter_index].state = state
     enable_next_level(email, level_index)
