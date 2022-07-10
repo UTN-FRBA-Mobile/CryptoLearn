@@ -127,7 +127,7 @@ class QuestionFragment : Fragment() {
                 }
             } else {
                 // Carga los datos de la siguiente pregunta en la view
-                if (binding.questionOptionButton.text.equals("NEXT")) {
+                if (binding.questionOptionButton.text.equals("PROXIMA PREGUNTA")) {
                     Log.d("PRINT", "NEXT QUESTION")
                     selectedAnswer = null
                     selectedAnswerString = ""
@@ -147,7 +147,7 @@ class QuestionFragment : Fragment() {
                 binding.questionDescription.text = it.questionDescription
                 currentQuestion = it
                 questionAnswered = false
-                binding.questionOptionButton.text = "CHECK"
+                binding.questionOptionButton.text = "VALIDAR"
 
                 recyclerView.adapter =
                     QuestionOptionsAdapter(it, OnClickListener { answer ->
@@ -171,7 +171,7 @@ class QuestionFragment : Fragment() {
                     binding.questionDescription.text = it.questionDescription
                     currentQuestion = it
                     questionAnswered = false
-                    binding.questionOptionButton.text = "CHECK"
+                    binding.questionOptionButton.text = "VALIDAR"
 
                     recyclerView.adapter =
                         QuestionOptionsAdapter(it, OnClickListener { answer ->
@@ -211,7 +211,7 @@ class QuestionFragment : Fragment() {
     }
 
     fun checkAnswer(isCorrect: Boolean) {
-        binding.questionOptionButton.text = "NEXT"
+        binding.questionOptionButton.text = "PROXIMA PREGUNTA"
         var newQuestion = currentQuestion
         newQuestion.isCorrect = isCorrect
         currentQuestion = newQuestion
