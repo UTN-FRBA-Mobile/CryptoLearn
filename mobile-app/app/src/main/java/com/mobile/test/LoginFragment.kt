@@ -95,10 +95,8 @@ class LoginFragment : Fragment() {
                             imm.hideSoftInputFromWindow(view.windowToken,0)
                             SessionManager.getInstance(requireContext()).saveAuthToken(response.body()?.token!!)
                             val canAuthenticate = BiometricManager.from(requireContext()).canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)
-                            if (canAuthenticate == BiometricManager.BIOMETRIC_SUCCESS) {
-                                if (ciphertextWrapper == null) {
-                                    showActivateBiometricsDialog()
-                                }
+                            if (canAuthenticate == BiometricManager.BIOMETRIC_SUCCESS && ciphertextWrapper == null) {
+                                showActivateBiometricsDialog()
                             } else {
                                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                             }

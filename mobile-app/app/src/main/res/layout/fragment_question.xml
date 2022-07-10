@@ -51,7 +51,7 @@
                 android:layout_marginTop="@dimen/text_margin_top"
                 android:adjustViewBounds="true"
                 android:maxHeight="@dimen/max_image_height"
-                android:src="@drawable/chapter_1" />
+                android:src="@drawable/chapter_1_in_progress" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/questionOptions_recycler_view"

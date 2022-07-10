@@ -43,7 +43,7 @@ object BiometricPromptUtils {
             setDescription("Por favor, autenticate para iniciar sesión")
             setConfirmationRequired(false)
             setNegativeButtonText("Cancelar")
-            // TODO: No supe como hacer para acceder a resources desde esta clase q esta fuera de un fragment/login
+            // TODO: No supe como hacer para acceder a resources desde esta clase q esta fuera de un fragment/activity
 //            setTitle(getString(R.string.prompt_info_title))
 //            setSubtitle(getString(R.string.prompt_info_subtitle))
 //            setDescription(getString(R.string.prompt_info_description))
