@@ -222,7 +222,7 @@ class QuestionFragment : Fragment() {
 
     private fun completeChapter() {
         sessionManager = SessionManager.getInstance(requireContext())
-        RetrofitClient.service.updateChapterStatus(token = "Bearer ${sessionManager.fetchAuthToken()}", 1,1, UpdateChapterStatusRequest("done"))
+        RetrofitClient.service.updateChapterStatus(token = "Bearer ${sessionManager.fetchAuthToken()}", chapterData.levelId,chapterData.id, UpdateChapterStatusRequest("done"))
             .enqueue(object : Callback<String> {
                 override fun onResponse(
                     call: Call<String>,

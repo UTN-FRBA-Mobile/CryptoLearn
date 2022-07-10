@@ -60,8 +60,10 @@ class HomeFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         levels = response.body()?.response!!
-                        levels!!.forEach { level ->
-                            level.chapters.forEach{ chapter ->
+                        levels!!.forEachIndexed { levelIndex, level ->
+                            level.chapters.forEachIndexed{ chapterIndex, chapter ->
+                                chapter.id = chapterIndex
+                                chapter.levelId = levelIndex
                                 chapter.questions?.forEach { question ->
                                     question.options.shuffle()
                                 }
