@@ -63,12 +63,12 @@ Chapter_1 = Chapter(
     "http:/10.0.2.2:8081/bitcoin.html",
     [
         Question(
-            "¿Qué es el bitcoin?",
+            "¿Qué es Bitcoin?",
             ["Un gusto de helado", "Una criptomoneda", "ASDADASD"],
             "Una criptomoneda",
         ),
         Question(
-            "¿Qué es etherium?",
+            "¿Qué es Ethereum?",
             ["Una criptomoneda", "Un noticiero"],
             "Una criptomoneda",
         ),
@@ -84,7 +84,7 @@ Chapter_1 = Chapter(
 
 Chapter_2 = Chapter(
     "Capítulo 2",
-    "http:/10.0.2.2:8081/bitcoin.html",
+    "http:/10.0.2.2:8081/ethereum.html",
     [
         Question(
             "¿Qué es el usdt?",
