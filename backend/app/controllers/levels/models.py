@@ -63,15 +63,17 @@ Chapter_1 = Chapter(
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
-            "Que es el bitcoin?",
+            "¿Qué es el bitcoin?",
             ["Un gusto de helado", "Una criptomoneda", "ASDADASD"],
             "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?", ["Una criptomoneda", "Un noticiero"], "Una criptomoneda"
+            "¿Qué es etherium?",
+            ["Una criptomoneda", "Un noticiero"],
+            "Una criptomoneda",
         ),
         Question(
-            "Que es dogecoin?",
+            "¿Qué es dogecoin?",
             ["Una raza de perro", "Una criptomoneda"],
             "Una criptomoneda",
         ),
@@ -85,12 +87,12 @@ Chapter_2 = Chapter(
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
-            "Que es el usdt?",
+            "¿Qué es el usdt?",
             ["Un gusto de helado", "Una criptomoneda"],
             "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?",
+            "¿Qué es etherium?",
             ["Un gusto de helado", "Una criptomoneda"],
             "Una criptomoneda",
         ),
@@ -104,12 +106,12 @@ Chapter_3 = Chapter(
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
-            "Que es el bitcoin?",
+            "¿Qué es el bitcoin?",
             ["Un modelo de teclado", "Una criptomoneda"],
             "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
+            "¿Qué es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
         ),
     ],
     "chapter_3",
@@ -121,12 +123,12 @@ Chapter_4 = Chapter(
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
-            "Que es el bitcoin?",
+            "¿Qué es el bitcoin?",
             ["Un modelo de teclado", "Una criptomoneda"],
             "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
+            "¿Qué es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
         ),
     ],
     "chapter_2",
@@ -138,12 +140,12 @@ Chapter_5 = Chapter(
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
-            "Que es el bitcoin?",
+            "¿Qué es el bitcoin?",
             ["Un modelo de teclado", "Una criptomoneda"],
             "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
+            "¿Qué es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
         ),
     ],
     "chapter_3",
@@ -155,12 +157,12 @@ Chapter_6 = Chapter(
     "https://www.newscientist.com/definition/bitcoin",
     [
         Question(
-            "Que es el bitcoin?",
+            "¿Qué es el bitcoin?",
             ["Un modelo de teclado", "Una criptomoneda"],
             "Una criptomoneda",
         ),
         Question(
-            "Que es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
+            "¿Qué es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
         ),
     ],
     "chapter_1",
