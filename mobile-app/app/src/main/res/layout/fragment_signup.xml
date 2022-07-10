@@ -68,10 +68,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/label_margin_top"
+            android:autofillHints=""
             android:background="@drawable/edit_text_border"
             android:ems="10"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:padding="@dimen/text_input_padding" />
+            android:minHeight="48dp"
+            android:padding="@dimen/text_input_padding"
+            android:textColorHint="#546E7A"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/nameLabel"
@@ -87,10 +92,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/label_margin_top"
+            android:autofillHints=""
             android:background="@drawable/edit_text_border"
             android:ems="10"
+            android:hint="@string/name"
             android:inputType="textPersonName"
-            android:padding="@dimen/text_input_padding" />
+            android:minHeight="48dp"
+            android:padding="@dimen/text_input_padding"
+            android:textColorHint="#546E7A"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/lastNameLabel"
@@ -106,10 +116,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/label_margin_top"
+            android:autofillHints=""
             android:background="@drawable/edit_text_border"
             android:ems="10"
+            android:hint="@string/last_name"
             android:inputType="textPersonName"
-            android:padding="@dimen/text_input_padding" />
+            android:minHeight="48dp"
+            android:padding="@dimen/text_input_padding"
+            android:textColorHint="#546E7A"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/passwordLabel"
@@ -125,10 +140,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/label_margin_top"
+            android:autofillHints=""
             android:background="@drawable/edit_text_border"
             android:ems="10"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:padding="@dimen/text_input_padding" />
+            android:minHeight="48dp"
+            android:padding="@dimen/text_input_padding"
+            android:textColorHint="#546E7A"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/confirmPasswordLabel"
@@ -144,10 +164,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/label_margin_top"
+            android:autofillHints=""
             android:background="@drawable/edit_text_border"
             android:ems="10"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:padding="@dimen/text_input_padding" />
+            android:minHeight="48dp"
+            android:padding="@dimen/text_input_padding"
+            android:textColorHint="#546E7A"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <Button
             android:id="@+id/signUpButton"
@@ -160,7 +185,7 @@
             android:stateListAnimator="@null"
             android:textColorHint="@color/white"
             android:textSize="@dimen/text_size"
-            tools:ignore="TextContrastCheck" />
+            tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     </LinearLayout>
 </layout>

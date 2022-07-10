@@ -70,8 +70,13 @@
             android:layout_marginTop="@dimen/label_margin_top"
             android:background="@drawable/edit_text_border"
             android:ems="10"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:padding="@dimen/text_input_padding" />
+            android:minHeight="48dp"
+            android:padding="@dimen/text_input_padding"
+            android:textColorHint="#546E7A"
+            tools:ignore="DuplicateSpeakableTextCheck"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/passwordLabel"
@@ -95,8 +100,11 @@
                 android:layout_marginTop="@dimen/label_margin_top"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
+                android:hint="@string/password"
                 android:inputType="textPassword"
-                android:padding="@dimen/text_input_padding" />
+                android:padding="@dimen/text_input_padding"
+                android:textColorHint="#546E7A"
+                tools:ignore="DuplicateSpeakableTextCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

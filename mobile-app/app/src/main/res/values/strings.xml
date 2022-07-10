@@ -25,11 +25,12 @@
     <string name="bad_login">El email o la contraseña son incorrectos</string>
     <string name="checkButton">CHECK</string>
     <string name="bad_get_levels">Hubo un error al cargar los niveles</string>
-
     <string name="prompt_info_title">CryptoLearn</string>
     <string name="prompt_info_subtitle">Autenticación biométrica</string>
     <string name="prompt_info_description">Por favor, autenticate para iniciar sesión</string>
     <string name="prompt_info_use_app_password">Cancelar</string>
-
     <string name="secret_key_name">biometric_encryption_key</string>
+    <string name="go_to_question">Go to question</string>
+    <string name="bitcoin_logo">bitcoin-logo</string>
+    <string name="ir_a_la_pregunta">Ir a la pregunta</string>
 </resources>
