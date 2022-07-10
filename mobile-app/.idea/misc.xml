@@ -23,6 +23,17 @@
         <entry key="..\:/Archivos/UTN/Mobile/Proyectos/Test/app/src/main/res/layout/fragment_signup.xml" value="0.33" />
         <entry key="..\:/Archivos/UTN/Mobile/Proyectos/Test/app/src/main/res/layout/header.xml" value="0.36666666666666664" />
         <entry key="..\:/Archivos/UTN/Mobile/Proyectos/Test/app/src/main/res/layout/my_toolbar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.257" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/activity_main.xml" value="0.12208713272543059" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/fragment_chapter.xml" value="0.2966751918158568" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/fragment_home.xml" value="0.12208713272543059" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/fragment_question.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/fragment_reset_password.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/fragment_signup.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/view_listitem_chapter.xml" value="0.23777173913043478" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/view_listitem_level.xml" value="0.23777173913043478" />
+        <entry key="..\:/Users/sant_/Documents/mobile/CryptoLearn/mobile-app/app/src/main/res/layout/view_question_option.xml" value="0.23777173913043478" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/fragment_chapter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18177083333333333" />

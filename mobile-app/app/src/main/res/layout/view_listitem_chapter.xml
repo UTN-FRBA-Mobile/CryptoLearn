@@ -9,7 +9,8 @@
     <Button
         android:id="@+id/chapter_image"
         android:layout_width="90dp"
-        android:layout_height="90dp" />
+        android:layout_height="90dp"
+        android:contentDescription="@string/bitcoin_logo" />
 
     <TextView
         android:id="@+id/chapter_name"
