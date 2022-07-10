@@ -8,7 +8,9 @@ data class Chapter(
     val url: String?,
     val questions: MutableList<Question>?,
     val image: String?,
-    val state: String?
+    val state: String?,
+    var id: Int,
+    var levelId: Int,
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -17,7 +19,9 @@ data class Chapter(
             parcel.readArrayList(Question::class.java.classLoader)
         },
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readInt(),
+        parcel.readInt(),
     ) {}
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -26,6 +30,8 @@ data class Chapter(
         parcel.writeList(questions)
         parcel.writeString(image)
         parcel.writeString(state)
+        parcel.writeInt(id)
+        parcel.writeInt(levelId)
     }
 
     override fun describeContents(): Int {
