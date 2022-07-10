@@ -2,16 +2,25 @@ package com.mobile.test
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.mobile.test.databinding.FragmentQuestionBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
+import com.mobile.test.api.RetrofitClient
+import com.mobile.test.api.SessionManager
+import com.mobile.test.api.SignupRequest
+import com.mobile.test.api.UpdateChapterStatusRequest
 import com.mobile.test.model.Chapter
 import com.mobile.test.model.Question
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +47,7 @@ class QuestionFragment : Fragment() {
     private var questionAnswered: Boolean = false
     private var selectedAnswer: Int? = null
     private var selectedAnswerString: String = ""
+    private lateinit var sessionManager: SessionManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -176,6 +186,7 @@ class QuestionFragment : Fragment() {
                     recyclerView.adapter!!.notifyDataSetChanged()
                 }
             } else {
+                completeChapter()
                 findNavController().navigate(R.id.action_questionFragment_to_homeFragment)
             }
         }
@@ -207,6 +218,25 @@ class QuestionFragment : Fragment() {
         questionAnswered = true
         recyclerView.adapter = QuestionOptionsAdapter(newQuestion, null)
         recyclerView.adapter!!.notifyDataSetChanged()
+    }
+
+    private fun completeChapter() {
+        sessionManager = SessionManager.getInstance(requireContext())
+        RetrofitClient.service.updateChapterStatus(token = "Bearer ${sessionManager.fetchAuthToken()}", 1,1, UpdateChapterStatusRequest("done"))
+            .enqueue(object : Callback<String> {
+                override fun onResponse(
+                    call: Call<String>,
+                    response: Response<String>
+                ) {
+                    //TODO success message
+                }
+                override fun onFailure(
+                    call: Call<String>,
+                    error: Throwable
+                ) {
+                    //TODO error message
+                }
+            })
     }
 
     companion object {
