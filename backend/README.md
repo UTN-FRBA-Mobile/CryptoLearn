@@ -38,7 +38,7 @@ curl --request GET \
 Response:
 [{
     "answer": 0,
-    "name": "Capitulo 1",
+    "name": "Capítulo 1",
     "options": [
         "Un gusto de helado",
         "Una criptomoneda"

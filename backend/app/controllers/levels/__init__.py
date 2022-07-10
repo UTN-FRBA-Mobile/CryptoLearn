@@ -15,7 +15,7 @@ class LevelsResource(MethodView):
         200,
         example={
             "answer": 0,
-            "name": "Capitulo 1",
+            "name": "Capítulo 1",
             "options": ["Un gusto de helado", "Una criptomoneda"],
             "question": "Que es el bitcoin?",
             "state": "completado",
@@ -35,10 +35,5 @@ class LevelsUpdateResource(MethodView):
     @blp.arguments(State)
     def post(self, body, level_index, chapter_index):
         email = flask_jwt.get_jwt_identity()
-        update_chapter_state(
-            email,
-            int(level_index),
-            int(chapter_index),
-            body["state"]
-        )
+        update_chapter_state(email, int(level_index), int(chapter_index), body["state"])
         return "", 200

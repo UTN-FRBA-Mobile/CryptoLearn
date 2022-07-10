@@ -48,7 +48,7 @@
             android:backgroundTint="@color/text_disabled"
             android:padding="@dimen/button_padding"
             android:stateListAnimator="@null"
-            android:text="Go to question"
+            android:text="Ir a la pregunta"
             android:textColorHint="@color/white"
             android:textSize="@dimen/text_size"
             tools:ignore="TextContrastCheck" />
