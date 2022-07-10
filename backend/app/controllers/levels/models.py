@@ -79,7 +79,7 @@ Chapter_1 = Chapter(
         ),
     ],
     "chapter_1",
-    "in-progress",
+    "in_progress",
 )
 
 Chapter_2 = Chapter(
@@ -98,7 +98,7 @@ Chapter_2 = Chapter(
         ),
     ],
     "chapter_2",
-    "in-progress",
+    "in_progress",
 )
 
 Chapter_3 = Chapter(
@@ -115,7 +115,7 @@ Chapter_3 = Chapter(
         ),
     ],
     "chapter_3",
-    "in-progress",
+    "in_progress",
 )
 
 Chapter_4 = Chapter(
@@ -188,13 +188,13 @@ def enable_next_level(email, level_index):
     if levels_by_user[email][level_index].is_done():
         try:
             for chapter in levels_by_user[email][level_index + 1].chapters:
-                chapter.state = "in-progress"
+                chapter.state = "in_progress"
         except IndexError:
             pass
 
 
 def update_chapter_state(email: str, level_index: int, chapter_index: int, state: str):
-    assert state == "done" or state == "in-progress" or state == "block"
+    assert state == "done" or state == "in_progress" or state == "block"
     levels_by_user[email][level_index].chapters[chapter_index].state = state
     enable_next_level(email, level_index)
 
