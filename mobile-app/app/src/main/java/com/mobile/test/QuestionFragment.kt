@@ -109,7 +109,7 @@ class QuestionFragment : Fragment() {
                         } else {
                             // la resp esta mal
                             checkAnswer(false)
-                            badQuestion.add(currentQuestion)
+                            badQuestion.add(currentQuestion.copy(currentQuestion.questionTitle, currentQuestion.questionDescription, currentQuestion.options,null,currentQuestion.answer,null,null))
                         }
                     } else {
                         if (selectedAnswerString.equals(badQuestion?.get(questionIndex)?.answer, ignoreCase = true)) {
@@ -118,7 +118,7 @@ class QuestionFragment : Fragment() {
                         } else {
                             // la resp esta mal
                             checkAnswer(false)
-                            badQuestion.add(currentQuestion)
+                            badQuestion.add(currentQuestion.copy(currentQuestion.questionTitle, currentQuestion.questionDescription, currentQuestion.options,null,currentQuestion.answer,null,null))
                         }
                     }
 
