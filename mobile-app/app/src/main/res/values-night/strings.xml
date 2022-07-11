@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="bitcoin_logo">bitcoin-logo</string>
-    <string name="ir_a_la_pregunta">Ir a la pregunta</string>
+    <string name="ir_a_la_pregunta">Ir a las preguntas</string>
 </resources>

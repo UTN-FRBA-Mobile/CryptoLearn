@@ -91,6 +91,10 @@
             android:id="@+id/etPasswordLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="#546E7A"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:hintTextColor="#546E7A"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText

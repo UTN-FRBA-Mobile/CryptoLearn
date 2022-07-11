@@ -59,23 +59,23 @@ class Level:
 
 
 Chapter_1 = Chapter(
-    "Capítulo 1",
+    "Capítulo 1 - Bitcoin",
     "http:/10.0.2.2:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es Bitcoin?",
-            ["Un gusto de helado", "Una criptomoneda", "ASDADASD"],
+            ["Un juego", "Una criptomoneda", "Un programa de PC"],
             "Una criptomoneda",
         ),
         Question(
-            "¿Qué es Ethereum?",
-            ["Una criptomoneda", "Un noticiero"],
-            "Una criptomoneda",
+            "¿Cuándo fue creado Bitcoin?",
+            ["2009", "2014", "2005"],
+            "2009",
         ),
         Question(
-            "¿Qué es dogecoin?",
-            ["Una raza de perro", "Una criptomoneda"],
-            "Una criptomoneda",
+            "¿Cuántas millones de unidades de Bitcoin existen?",
+            ["9", "43", "21"],
+            "21",
         ),
     ],
     "chapter_1",
@@ -83,18 +83,23 @@ Chapter_1 = Chapter(
 )
 
 Chapter_2 = Chapter(
-    "Capítulo 2",
-    "http:/10.0.2.2:8080/static/ethereum.html",
+    "Capítulo 2 - Stables",
+    "http:/10.0.2.2:8080/static/usdt.html",
     [
         Question(
-            "¿Qué es el usdt?",
-            ["Un gusto de helado", "Una criptomoneda"],
-            "Una criptomoneda",
+            "¿1.00 dolares siempre seran iguales a 1.00 USDT/USDC/DAI?",
+            ["Verdadero, nunca cambia", "Falso, puede variar levemente, o mucho en casos extremos"],
+            "Falso, puede variar levemente, o mucho en casos extremos",
         ),
         Question(
-            "¿Qué es etherium?",
-            ["Un gusto de helado", "Una criptomoneda"],
-            "Una criptomoneda",
+            "¿Cuál stablecoin es descentralizada?",
+            ["USDT", "USDC", "DAI"],
+            "DAI",
+        ),
+        Question(
+            "¿Cuál stablecoin respalda cada activo con un dolar fisico?",
+            ["USDT", "USDC", "DAI"],
+            "USDC",
         ),
     ],
     "chapter_2",
@@ -102,16 +107,23 @@ Chapter_2 = Chapter(
 )
 
 Chapter_3 = Chapter(
-    "Capítulo 3",
-    "http:/10.0.2.2:8080/static/bitcoin.html",
+    "Capítulo 3 - Ethereum",
+    "http:/10.0.2.2:8080/static/ethereum.html",
     [
         Question(
-            "¿Qué es el bitcoin?",
-            ["Un modelo de teclado", "Una criptomoneda"],
-            "Una criptomoneda",
+            "¿Ethereum tiene un ecosistema centralizado?",
+            ["Verdadero", "Falso"],
+            "Falso",
         ),
         Question(
-            "¿Qué es etherium?", ["Un animal", "Una criptomoneda"], "Una criptomoneda"
+            "¿Como se llama la moneda de cambio que utiliza Ethereum?",
+            ["Ethereum", "Ether", "Eth"],
+            "Ether",
+        ),
+        Question(
+            "¿La cadena de Ethereum se centra en darle seguimiento a los Ethers?",
+            ["Verdadero, es su unico proposito", "Falso, dan mas importancia a ejecutar apps descentralizadas"],
+            "Falso, dan mas importancia a ejecutar apps descentralizadas",
         ),
     ],
     "chapter_3",
