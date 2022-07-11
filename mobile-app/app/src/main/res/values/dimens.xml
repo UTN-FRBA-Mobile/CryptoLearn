@@ -2,6 +2,7 @@
 <resources>
     <dimen name="text_size">16sp</dimen>
     <dimen name="padding_horizontal">24sp</dimen>
+    <dimen name="padding_horizontal_webview">8sp</dimen>
     <dimen name="padding_vertical">24sp</dimen>
     <dimen name="text_margin_top">16sp</dimen>
     <dimen name="label_margin_top">8sp</dimen>

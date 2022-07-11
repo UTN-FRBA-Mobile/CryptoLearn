@@ -6,8 +6,8 @@
         <type value="QUICK_BOOT_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\NicolasCoen\.android\avd\Pixel_3a_API_30.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="mvy5q4mvnnaqqsif" />
           </Key>
         </deviceKey>
       </Target>

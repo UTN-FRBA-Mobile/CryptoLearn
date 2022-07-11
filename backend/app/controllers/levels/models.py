@@ -60,7 +60,7 @@ class Level:
 
 Chapter_1 = Chapter(
     "Capítulo 1 - Bitcoin",
-    "http:/10.0.2.2:8080/static/bitcoin.html",
+    "http:/192.168.0.105:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es Bitcoin?",
@@ -84,7 +84,7 @@ Chapter_1 = Chapter(
 
 Chapter_2 = Chapter(
     "Capítulo 2 - Stables",
-    "http:/10.0.2.2:8080/static/usdt.html",
+    "http:/192.168.0.105:8080/static/usdt.html",
     [
         Question(
             "¿1.00 dolares siempre seran iguales a 1.00 USDT/USDC/DAI?",
@@ -108,7 +108,7 @@ Chapter_2 = Chapter(
 
 Chapter_3 = Chapter(
     "Capítulo 3 - Ethereum",
-    "http:/10.0.2.2:8080/static/ethereum.html",
+    "http:/192.168.0.105:8080/static/ethereum.html",
     [
         Question(
             "¿Ethereum tiene un ecosistema centralizado?",
@@ -132,7 +132,7 @@ Chapter_3 = Chapter(
 
 Chapter_4 = Chapter(
     "Capítulo 4",
-    "http:/10.0.2.2:8080/static/bitcoin.html",
+    "http:/192.168.0.105:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es el bitcoin?",
@@ -149,7 +149,7 @@ Chapter_4 = Chapter(
 
 Chapter_5 = Chapter(
     "Capítulo 5",
-    "http:/10.0.2.2:8080/static/bitcoin.html",
+    "http:/192.168.0.105:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es el bitcoin?",
@@ -166,7 +166,7 @@ Chapter_5 = Chapter(
 
 Chapter_6 = Chapter(
     "Capítulo 6",
-    "http:/10.0.2.2:8080/static/bitcoin.html",
+    "http:/192.168.0.105:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es el bitcoin?",

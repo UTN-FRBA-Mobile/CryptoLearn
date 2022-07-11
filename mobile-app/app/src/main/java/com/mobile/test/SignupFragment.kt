@@ -1,11 +1,13 @@
 package com.mobile.test
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
@@ -83,6 +85,8 @@ class signupFragment : Fragment() {
                                     toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
                                     toast.show()
                                     val action = R.id.action_signupFragment_to_loginFragment
+                                    var imm: InputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                                    imm.hideSoftInputFromWindow(view.windowToken,0)
                                     findNavController().navigate(action)
                                 } else {
                                     showErrorToast()

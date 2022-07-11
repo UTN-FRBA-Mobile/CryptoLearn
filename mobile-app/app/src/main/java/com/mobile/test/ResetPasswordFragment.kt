@@ -1,11 +1,13 @@
 package com.mobile.test
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
@@ -67,6 +69,8 @@ class ResetPasswordFragment : Fragment() {
                             val toast = Toast.makeText(context, getString(R.string.recovery_email_sent, email), Toast.LENGTH_LONG)
                             toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
                             toast.show()
+                            var imm: InputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                            imm.hideSoftInputFromWindow(view.windowToken,0)
                             findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
                         }
                         override fun onFailure(call: Call<String>, error: Throwable) {
