@@ -38,7 +38,7 @@
         <WebView
             android:id="@+id/chapterWebView"
             android:layout_width="match_parent"
-            android:layout_height="525dp"
+            android:layout_height="443dp"
             android:visibility="visible" />
 
         <Button
