@@ -12,7 +12,7 @@ from app.jwt import JWTManager
 
 def create_app() -> Flask:
     """Create Flask app."""
-    app = Flask(__name__, static_folder=None)
+    app = Flask(__name__, static_folder="../static")
     app.config.from_object(BaseConfig())
     with app.app_context():
         # accepts both /endpoint and /endpoint/ as valid URLs

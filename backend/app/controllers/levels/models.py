@@ -60,7 +60,7 @@ class Level:
 
 Chapter_1 = Chapter(
     "Capítulo 1",
-    "http:/10.0.2.2:8081/bitcoin.html",
+    "http:/10.0.2.2:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es Bitcoin?",
@@ -84,7 +84,7 @@ Chapter_1 = Chapter(
 
 Chapter_2 = Chapter(
     "Capítulo 2",
-    "http:/10.0.2.2:8081/ethereum.html",
+    "http:/10.0.2.2:8080/static/ethereum.html",
     [
         Question(
             "¿Qué es el usdt?",
@@ -103,7 +103,7 @@ Chapter_2 = Chapter(
 
 Chapter_3 = Chapter(
     "Capítulo 3",
-    "http:/10.0.2.2:8081/bitcoin.html",
+    "http:/10.0.2.2:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es el bitcoin?",
@@ -120,7 +120,7 @@ Chapter_3 = Chapter(
 
 Chapter_4 = Chapter(
     "Capítulo 4",
-    "http:/10.0.2.2:8081/bitcoin.html",
+    "http:/10.0.2.2:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es el bitcoin?",
@@ -137,7 +137,7 @@ Chapter_4 = Chapter(
 
 Chapter_5 = Chapter(
     "Capítulo 5",
-    "http:/10.0.2.2:8081/bitcoin.html",
+    "http:/10.0.2.2:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es el bitcoin?",
@@ -154,7 +154,7 @@ Chapter_5 = Chapter(
 
 Chapter_6 = Chapter(
     "Capítulo 6",
-    "http:/10.0.2.2:8081/bitcoin.html",
+    "http:/10.0.2.2:8080/static/bitcoin.html",
     [
         Question(
             "¿Qué es el bitcoin?",
